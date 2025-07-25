@@ -32,19 +32,23 @@
       {
         "title": "Testing Revolution",
         "description": "Zero boilerplate testing with SyntropyLogMock"
+      },
+      {
+        "title": "Enterprise Security",
+        "description": "GitHub Dependabot, CodeQL analysis, and automated vulnerability scanning"
       }
     ]
   },
   "quickStart": {
     "title": "Get started in 30 seconds",
     "subtitle": "Install and start logging with zero configuration",
-    "code": "npm install syntropylog@0.6.14"
+    "code": "npm install syntropylog@0.7.0"
   },
   "stats": {
     "title": "Trusted by developers",
     "downloads": "1,904+ weekly downloads",
-    "examples": "30+ production examples",
-    "coverage": "94.1% test coverage",
-    "version": "v0.6.14 stable"
+    "examples": "32 production examples",
+    "coverage": "88.93% test coverage",
+    "version": "v0.7.0 stable"
   }
 } 
