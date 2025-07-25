@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "title": "From Chaos to Clarity",
+    "subtitle": "The Observability Framework for High-Performance Teams",
+    "description": "Context, correlation & clarity for Node.js apps. Ship diagnostics in <strong>&lt;5 minutes   </strong>.",
+    "tagline": "Ship resilient, secure, and cost-effective Node.js applications with confidence."
+  },
+  "features": {
+    "title": "Core Features",
+    "subtitle": "Everything you need for modern observability",
+    "items": [
+      {
+        "title": "Zero Boilerplate",
+        "description": "Get started in 30 seconds with automatic context propagation"
+      },
+      {
+        "title": "Automatic Correlation",
+        "description": "Distributed tracing across services, HTTP calls, and message brokers"
+      },
+      {
+        "title": "Framework Agnostic",
+        "description": "Works with Express, Fastify, Koa, NestJS, and any Node.js app"
+      },
+      {
+        "title": "Security First",
+        "description": "Built-in data masking and compliance-ready logging"
+      },
+      {
+        "title": "High Performance",
+        "description": "45,000+ ops/sec with less than 1ms latency"
+      },
+      {
+        "title": "Testing Revolution",
+        "description": "Zero boilerplate testing with SyntropyLogMock"
+      }
+    ]
+  },
+  "quickStart": {
+    "title": "Get started in 30 seconds",
+    "subtitle": "Install and start logging with zero configuration",
+    "code": "npm install syntropylog@0.6.14"
+  },
+  "stats": {
+    "title": "Trusted by developers",
+    "downloads": "1,904+ weekly downloads",
+    "examples": "30+ production examples",
+    "coverage": "94.1% test coverage",
+    "version": "v0.6.14 stable"
+  }
+} 

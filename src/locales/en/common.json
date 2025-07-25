@@ -1,0 +1,24 @@
+{
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "docs": "Documentation",
+    "examples": "Examples",
+    "blog": "Blog",
+    "community": "Community",
+    "github": "GitHub",
+    "npm": "NPM"
+  },
+  "buttons": {
+    "getStarted": "Get Started",
+    "viewDocs": "View Documentation",
+    "starOnGithub": "⭐ Star on GitHub",
+    "installNpm": "npm install syntropylog",
+    "tryExamples": "Try Examples",
+    "joinCommunity": "Join Community"
+  },
+  "footer": {
+    "copyright": "© 2024 SyntropyLog — Open source Apache 2.0. Built by SyntropySoft.",
+    "madeWith": "Made with ❤️ for the Node.js community"
+  }
+} 
