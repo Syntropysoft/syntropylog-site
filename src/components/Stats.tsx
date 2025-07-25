@@ -6,7 +6,6 @@ export default function Stats() {
   const { t } = useTranslations();
 
   const stats = [
-    {label: t('stats.downloads'), value: '1,904+'},
     {label: t('stats.examples'), value: '32'},
     {label: t('stats.coverage'), value: '88.93%'},
     {label: t('stats.version'), value: 'v0.7.0'}
