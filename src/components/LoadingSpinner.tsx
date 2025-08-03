@@ -7,22 +7,20 @@ interface LoadingSpinnerProps {
   showFor?: number; // Minimum time to show spinner in ms
 }
 
-export default function LoadingSpinner({ 
-  text = "Loading SyntropySoft...", 
-  showFor = 2000 
+export default function LoadingSpinner({
+  text = "Loading SyntropySoft...",
+  showFor = 2000
 }: LoadingSpinnerProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [shouldFadeOut, setShouldFadeOut] = useState(false);
 
   useEffect(() => {
-    // Hide spinner after minimum time
     const timer = setTimeout(() => {
       setShouldFadeOut(true);
-      
-      // Remove from DOM after fade out animation
+      // Wait for the fade-out animation to complete before hiding
       setTimeout(() => {
         setIsVisible(false);
-      }, 300);
+      }, 800); // Match the CSS transition duration
     }, showFor);
 
     return () => clearTimeout(timer);

@@ -8,11 +8,11 @@ interface LoadingProviderProps {
 }
 
 export default function LoadingProvider({ children }: LoadingProviderProps) {
-  const isLoading = useLoading(2000); // Show loading for at least 2 seconds
+  const isLoading = useLoading(2500); // Show loading for at least 2.5 seconds
 
   return (
     <>
-      {isLoading && <LoadingSpinner text="loading SyntropySoft..." />}
+      {isLoading && <LoadingSpinner text="Loading SyntropySoft..." />}
       <div className={`page-transition ${!isLoading ? 'loaded' : ''}`}>
         {children}
       </div>
