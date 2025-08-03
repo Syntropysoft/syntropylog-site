@@ -14,7 +14,7 @@ export interface ScrollAnimationState {
   hasAnimated: boolean;
 }
 
-export function useScrollAnimation(options: ScrollAnimationOptions = {}): [React.RefObject<HTMLElement>, ScrollAnimationState] {
+export function useScrollAnimation(options: ScrollAnimationOptions = {}): [React.RefObject<HTMLElement | null>, ScrollAnimationState] {
   const {
     threshold = 0.1,
     rootMargin = '0px',
@@ -74,57 +74,6 @@ export function useScrollAnimation(options: ScrollAnimationOptions = {}): [React
   return [elementRef, state];
 }
 
-// Hook for staggered animations (multiple elements)
-export function useStaggeredScrollAnimation(
-  count: number,
-  options: ScrollAnimationOptions & { staggerDelay?: number } = {}
-): [React.RefObject<HTMLElement>[], ScrollAnimationState[]] {
-  const { staggerDelay = 100, ...baseOptions } = options;
-  
-  const elementRefs = Array.from({ length: count }, () => useRef<HTMLElement>(null));
-  const [states, setStates] = useState<ScrollAnimationState[]>(
-    Array.from({ length: count }, () => ({ isVisible: false, hasAnimated: false }))
-  );
-
-  useEffect(() => {
-    const observers = elementRefs.map((ref, index) => {
-      const element = ref.current;
-      if (!element) return null;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          const isIntersecting = entry.isIntersecting;
-          
-          if (isIntersecting && !states[index].hasAnimated) {
-            const totalDelay = (baseOptions.delay || 0) + (index * staggerDelay);
-            
-            setTimeout(() => {
-              setStates(prev => prev.map((state, i) => 
-                i === index 
-                  ? { isVisible: true, hasAnimated: true }
-                  : state
-              ));
-            }, totalDelay);
-          }
-        },
-        {
-          threshold: baseOptions.threshold || 0.1,
-          rootMargin: baseOptions.rootMargin || '0px'
-        }
-      );
-
-      observer.observe(element);
-      return observer;
-    });
-
-    return () => {
-      observers.forEach(observer => observer?.disconnect());
-    };
-  }, [elementRefs, states, baseOptions, staggerDelay]);
-
-  return [elementRefs, states];
-}
-
 // Utility hook for fade-in animations
 export function useFadeInAnimation(delay: number = 0) {
   return useScrollAnimation({
@@ -135,7 +84,7 @@ export function useFadeInAnimation(delay: number = 0) {
 }
 
 // Utility hook for slide-in animations
-export function useSlideInAnimation(direction: 'left' | 'right' | 'up' | 'down' = 'up', delay: number = 0) {
+export function useSlideInAnimation(delay: number = 0) {
   return useScrollAnimation({
     threshold: 0.1,
     triggerOnce: true,

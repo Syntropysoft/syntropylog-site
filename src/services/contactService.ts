@@ -95,6 +95,8 @@ class ContactServiceImpl implements ContactService {
     try {
       // In a real application, this would integrate with your email service
       // (SendGrid, Mailgun, AWS SES, etc.)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _data = data; // Keep for interface compatibility
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
