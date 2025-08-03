@@ -1,58 +1,84 @@
 'use client';
 
-import {useTranslations} from '../hooks/useTranslations';
+import { useTranslations } from '../hooks/useTranslations';
+import Button from './ui/Button';
+
+// Helper component for the text gradient to keep the code clean.
+const GradientText = ({ children }: { children: React.ReactNode }) => (
+  <span className='bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent'>{children}</span>
+);
 
 export default function Hero() {
-  const { t } = useTranslations();
+  const { t, isLoading } = useTranslations();
+
+  // The loading skeleton is a great UX feature, it remains unchanged.
+  if (isLoading) {
+    return (
+      <section className='relative flex flex-col items-center justify-center text-center px-4 py-32 min-h-screen'>
+        <div className='animate-pulse'>
+          <div className='h-16 bg-sky-800/30 rounded-lg mb-6 w-96'></div>
+          <div className='h-8 bg-sky-800/20 rounded-lg mb-8 w-80'></div>
+          <div className='h-6 bg-sky-800/20 rounded-lg mb-12 w-96'></div>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="relative flex flex-col items-center justify-center text-center px-4 py-32 min-h-screen">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-950 via-sky-900 to-sky-950 opacity-20"></div>
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-          {t('hero.title') as string}
-        </h1>
-        
-        <p className="text-xl md:text-2xl mb-8 text-sky-100 max-w-3xl mx-auto">
-          {t('hero.subtitle') as string}
-        </p>
-        
-        <p className="text-lg md:text-xl mb-12 text-sky-200 max-w-2xl mx-auto">
-          <span dangerouslySetInnerHTML={{__html: t('hero.description')}} />
-        </p>
+    <>
+      {/* This style tag replicates the exact radial gradient from the original example.
+        You can move this to your global CSS file under a class like `.hero-gradient`.
+      */}
+      <style jsx global>{`
+        .hero-spotlight-gradient {
+          background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(12, 74, 110, 0.3), rgba(255, 255, 255, 0));
+        }
+      `}</style>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="https://github.com/Syntropysoft/SyntropyLog"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full text-lg font-medium transition-colors duration-200 shadow-lg hover:shadow-blue-500/25"
-          >
-            {t('buttons.starOnGithub', 'common') as string}
-          </a>
-          
-          <a
-            href="https://www.npmjs.com/package/syntropylog"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 border border-sky-400/50 hover:bg-sky-800/30 rounded-full text-lg font-medium transition-colors duration-200"
-          >
-            <code className="text-sky-300">{t('buttons.installNpm', 'common') as string}</code>
-          </a>
-        </div>
+      <section className='relative py-20 md:py-32 text-center hero-spotlight-gradient'>
+        {/* Content */}
+        <div className='relative z-10 container mx-auto px-6'>
+          <h1 className='text-4xl md:text-6xl font-black text-white leading-tight tracking-tight mb-6'>
+            {/* The title is now split to apply the gradient to the specific word.
+              Your translation file would need to support this structure.
+              Example: "hero.title_part1": "SyntropySoft: Forjando el Futuro del "
+                       "hero.title_highlight": "DevSecOps"
+            */}
+            {t('hero.title_part1')}
+            <GradientText>{t('hero.title_highlight')}</GradientText>
+          </h1>
 
-        {/* Quick start code */}
-        <div className="mt-12 p-6 bg-slate-900/70 rounded-lg ring-1 ring-sky-600/30 max-w-2xl mx-auto">
-          <p className="text-sm text-sky-300 mb-2">{t('quickStart.subtitle') as string}</p>
-          <code className="text-green-400 font-mono text-sm">
-            {t('quickStart.code') as string}
-          </code>
+          <p className='mt-6 text-lg md:text-xl max-w-3xl mx-auto text-slate-400 mb-10'>
+            {/* The subtitle is also split to apply the gold highlight.
+              Example: "hero.subtitle_part1": "Creamos "
+                       "hero.subtitle_highlight": "herramientas inteligentes, seguras y eficientes"
+                       "hero.subtitle_part2": " para los equipos de desarrollo más exigentes del mundo."
+            */}
+            {t('hero.subtitle_part1')}
+            <span className='text-yellow-400'>{t('hero.subtitle_highlight')}</span>
+            {t('hero.subtitle_part2')}
+          </p>
+
+          {/* CTA Buttons remain the same, your implementation was great. */}
+          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+            <Button
+              href='#ecosystem'
+              variant='primary'
+              size='lg'
+              className='bg-sky-500 hover:bg-sky-600 transform hover:scale-105 transition-transform'>
+              {t('hero.cta_explore')}
+            </Button>
+
+            <Button
+              href='#contact'
+              variant='secondary'
+              size='lg'
+              className='bg-slate-700 hover:bg-slate-600 transform hover:scale-105 transition-transform'>
+              {t('hero.cta_contact')}
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
-} 
+}

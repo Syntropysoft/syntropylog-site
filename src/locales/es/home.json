@@ -1,9 +1,14 @@
 {
   "hero": {
-    "title": "Del Caos a la Claridad",
-    "subtitle": "El Framework de Observabilidad para Equipos de Alto Rendimiento",
-    "description": "Contexto, correlación y claridad para apps Node.js. Despliega diagnósticos en <strong>&lt;5 minutos</strong>.",
-    "tagline": "Despliega aplicaciones Node.js resilientes, seguras y rentables con confianza."
+    "title_part1": "SyntropySoft: Forjando el Futuro del ",
+    "title_highlight": "DevSecOps",
+    "subtitle_part1": "Creamos ",
+    "subtitle_highlight": "herramientas inteligentes, seguras y eficientes",
+    "subtitle_part2": " para los equipos de desarrollo más exigentes del mundo.",
+    "description": "Del Caos a la Claridad",
+    "tagline": "Observabilidad • Frontend • Seguridad",
+    "cta_explore": "Explorar Soluciones",
+    "cta_contact": "Contactar"
   },
   "features": {
     "title": "Características Principales",
@@ -38,6 +43,96 @@
         "description": "GitHub Dependabot, análisis CodeQL y escaneo automático de vulnerabilidades"
       }
     ]
+  },
+  "ecosystem": {
+    "title": "Ecosistema Completo",
+    "subtitle": "Tres herramientas poderosas, una plataforma unificada",
+    "description": "SyntropySoft proporciona una solución completa para aplicaciones Node.js modernas, desde observabilidad hasta frontend y seguridad.",
+    "tools": [
+      {
+        "name": "SyntropyLog",
+        "title": "Framework de Observabilidad",
+        "description": "Del caos a la claridad. Trazabilidad distribuida, correlación automática y logging sin boilerplate para equipos de alto rendimiento.",
+        "features": ["Zero Boilerplate", "Correlación Automática", "Alto Rendimiento", "Revolución en Testing"],
+        "npm": "npm install syntropylog",
+        "color": "blue",
+        "cta": "Prueba SyntropyLog Gratis"
+      },
+      {
+        "name": "SyntropyFront",
+        "title": "Framework Frontend",
+        "description": "Desarrollo frontend moderno con integración perfecta al ecosistema SyntropySoft.",
+        "features": ["React Moderno", "TypeScript First", "Integración Ecosistema", "Optimizado Rendimiento"],
+        "npm": "npm install @syntropysoft/syntropyfront",
+        "color": "green",
+        "cta": "Ver en GitHub"
+      },
+      {
+        "name": "Praetorian",
+        "title": "Seguridad y Gobernanza",
+        "description": "Seguridad y gobernanza de nivel empresarial para tus aplicaciones Node.js.",
+        "features": ["Seguridad Primero", "Listo para Compliance", "Escaneo Automatizado", "Grado Empresarial"],
+        "npm": "npm install @syntropysoft/praetorian",
+        "color": "purple",
+        "cta": "Ver en GitHub",
+        "status": "En desarrollo"
+      }
+    ]
+  },
+  "syntropylog": {
+    "title": "SyntropyLog 🔍 – Del Caos a la Claridad",
+    "subtitle": "El framework de observabilidad para equipos de alto rendimiento. Construye aplicaciones Node.js resilientes, seguras y eficientes con confianza.",
+    "observability_tooltip": "Capacidad de un sistema para ser entendido desde el exterior a través de sus salidas: logs, métricas y trazas.",
+    "feature_title": "Observabilidad Integral",
+    "feature_desc": "SyntropyLog no es solo un logger. Es un completo sistema de observabilidad que te da el poder de entender tu aplicación a fondo, con características listas para producción.",
+    "main_features_title": "Características Principales:",
+    "features": [
+      {
+        "title": "Zero Performance Overhead",
+        "description": "Logs en 2ms (igual que Pino, el más rápido del mercado) con 0 impacto en rendimiento."
+      },
+      {
+        "title": "Bundle Size Mínimo",
+        "description": "Solo 203 bytes más que Pino (1.03x) - tree-shaking inteligente que solo carga lo que usas."
+      },
+      {
+        "title": "Zero Boilerplate",
+        "description": "Comienza en 30 segundos con propagación automática de contexto entre servicios."
+      },
+      {
+        "title": "Distributed Tracing Automático",
+        "description": "Correlation IDs que viajan entre servicios, HTTP calls y message brokers sin configuración."
+      },
+      {
+        "title": "Singleton Pattern Inteligente",
+        "description": "Previene crashes de pods en Kubernetes con gestión eficiente de recursos."
+      },
+      {
+        "title": "Testing Revolution",
+        "description": "SyntropyLogMock elimina la necesidad de conexiones reales en tests - 88.93% test coverage."
+      },
+      {
+        "title": "Enterprise Security",
+        "description": "GitHub Dependabot, CodeQL, escaneo automático de vulnerabilidades - 100% open source."
+      }
+    ],
+    "getting_started_title": "Fácil de Empezar",
+    "step1_label": "1. Instala el paquete:",
+    "step2_label": "2. Configura e inicializa:",
+    "docs_cta": "Ver Documentación Completa"
+  },
+  "about": {
+    "title": "Construido por Desarrolladores, para Desarrolladores",
+    "subtitle": "En SyntropySoft, nuestra pasión es resolver problemas reales. Somos un equipo dedicado a la creación de software de alta calidad con un fuerte compromiso con el código abierto y la comunidad.",
+    "opensource_title": "Compromiso Open Source"
+  },
+  "contact": {
+    "title": "Hablemos",
+    "subtitle": "¿Tienes una idea, necesitas una solución a medida o simplemente quieres saber más? Envíanos un mensaje.",
+    "form_name": "Nombre",
+    "form_email": "Email",
+    "form_message": "Mensaje",
+    "form_submit": "Enviar Mensaje"
   },
   "quickStart": {
     "title": "Comienza en 30 segundos",

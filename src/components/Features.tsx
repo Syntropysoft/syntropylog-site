@@ -1,51 +1,110 @@
 'use client';
 
-import {useTranslations} from '../hooks/useTranslations';
+import { useTranslations } from '../hooks/useTranslations';
+import {
+  SyntropyLogIcon,
+  SyntropyFrontIcon,
+  PraetorianIcon,
+} from '../assets/icons';
+
+interface Tool {
+  name: string;
+  description: string;
+  cta: string;
+  status?: string;
+}
+
+interface EcosystemData {
+  title: string;
+  subtitle: string;
+  tools: Tool[];
+}
 
 export default function Features() {
   const { t } = useTranslations();
 
-  // Get features array safely
-  const features = t('features.items', 'home');
-  const featuresArray = Array.isArray(features) ? features : [];
+  // Get ecosystem data from translations with fallback
+  const ecosystemDataRaw = t('ecosystem', 'home');
+  const ecosystemData = typeof ecosystemDataRaw === 'object' ? ecosystemDataRaw as EcosystemData : {
+    title: 'Ecosistema Completo',
+    subtitle: 'Tres herramientas poderosas, una plataforma unificada',
+    tools: []
+  };
+  
+  const tools = ecosystemData?.tools || [];
+
+  // Map tools to component structure
+  const ecosystemProducts = tools.map((tool: Tool, index: number) => ({
+    id: tool.name.toLowerCase().replace(/\s+/g, ''),
+    name: tool.name,
+    icon: tool.name === 'SyntropyLog' ? <SyntropyLogIcon /> : 
+          tool.name === 'SyntropyFront' ? <SyntropyFrontIcon /> : 
+          <PraetorianIcon />,
+    emoji: tool.name === 'SyntropyLog' ? '🔍' : 
+           tool.name === 'SyntropyFront' ? '🎨' : '🏛️',
+    description: tool.description,
+    isPrimary: tool.name === 'SyntropyLog',
+    aosDelay: `${(index + 1) * 100}`,
+    cta: tool.cta,
+    status: tool.status
+  }));
 
   return (
-    <section id="features" className="py-24 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section id='ecosystem' className='py-20 bg-slate-900/70'>
+      <div className='container mx-auto px-6'>
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            {t('features.title') as string}
+        <div className='text-center mb-12' data-aos='fade-up'>
+          <h2 className='text-3xl md:text-4xl font-bold text-white'>
+            {ecosystemData?.title || 'Ecosistema Completo'}
           </h2>
-          <p className="text-xl text-sky-200 max-w-2xl mx-auto">
-            {t('features.subtitle') as string}
+          <p className='mt-4 text-slate-400 max-w-2xl mx-auto'>
+            {ecosystemData?.subtitle || 'Tres herramientas poderosas, una plataforma unificada'}
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuresArray.map((feature: {title: string; description: string}, index: number) => (
+        {/* Products Grid */}
+        <div className='grid md:grid-cols-3 gap-8'>
+          {ecosystemProducts.map((product) => (
             <div
-              key={index}
-              className="p-6 bg-slate-900/50 rounded-xl border border-sky-600/30 hover:border-sky-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
-            >
-              <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-400 text-xl font-bold">
-                  {index + 1}
-                </span>
-              </div>
-              
-              <h3 className="text-xl font-semibold mb-3 text-white">
-                {feature.title}
+              key={product.id}
+              data-aos='fade-up'
+              data-aos-delay={product.aosDelay}
+              className={`bg-slate-800 p-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 ${
+                product.isPrimary 
+                  ? 'border border-sky-500 shadow-2xl shadow-sky-900/50' 
+                  : 'border border-slate-700 hover:border-sky-500'
+              }`}>
+              {/* Icon Container */}
+              <div className='flex items-center justify-center h-16 w-16 rounded-full bg-sky-900/50 mb-6'>{product.icon}</div>
+
+              {/* Product Title */}
+              <h3 className='text-xl font-bold text-white mb-2'>
+                {product.name}
+                <span className='ml-2'>{product.emoji}</span>
               </h3>
-              
-              <p className="text-sky-200 leading-relaxed">
-                {feature.description}
+
+              {/* Product Description */}
+              <p className='text-slate-400 mb-4'>
+                {product.description}
+                {/* Special status for Praetorian */}
+                {product.status && (
+                  <span className='font-semibold text-yellow-400 ml-1'>({product.status})</span>
+                )}
               </p>
+
+              {/* Call to Action */}
+              <a 
+                href={product.id === 'syntropylog' ? '#syntropylog' : `https://github.com/Syntropysoft/${product.id}`} 
+                target={product.id === 'syntropylog' ? '_self' : '_blank'}
+                rel={product.id === 'syntropylog' ? '' : 'noopener noreferrer'}
+                className='font-semibold text-sky-400 hover:text-sky-300 transition-colors'
+              >
+                {product.cta} &rarr;
+              </a>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-} 
+}

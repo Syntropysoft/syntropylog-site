@@ -1,0 +1,89 @@
+este proyecto es un el sitio principal de syntropysoft.com
+sitio principal: https://syntropysoft.com/
+
+@https://www.npmjs.com/package/syntropylog 
+https://www.npmjs.com/package/@syntropysoft/syntropyfront?activeTab=readme
+https://www.npmjs.com/package/@syntropysoft/praetorian
+
+ PLAN DE REFACTORIZACIÓN CON SRP
+Diagnóstico actual:
+Componentes monolíticos que hacen demasiadas cosas
+Lógica de traducciones mezclada con UI
+CSS y lógica de negocio juntos
+Difícil de testear y mantener
+Estructura propuesta con SRP:
+
+src/
+├── components/
+│   ├── ui/                    # Componentes UI puros (solo presentación)
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   ├── Tooltip.tsx
+│   │   └── Navigation.tsx
+│   ├── sections/              # Secciones de página (orquestación)
+│   │   ├── Hero.tsx
+│   │   ├── Solutions.tsx
+│   │   ├── Ecosystem.tsx
+│   │   ├── About.tsx
+│   │   └── Contact.tsx
+│   └── layout/                # Componentes de layout
+│       ├── Header.tsx
+│       └── Footer.tsx
+├── hooks/                     # Lógica de negocio
+│   ├── useTranslations.ts
+│   ├── useScrollAnimation.ts
+│   └── useContactForm.ts
+├── services/                  # Servicios externos
+│   ├── translationService.ts
+│   └── contactService.ts
+├── types/                     # Tipos TypeScript
+│   ├── translation.ts
+│   └── contact.ts
+└── utils/                     # Utilidades puras
+    ├── animations.ts
+    └── validation.ts
+
+## FASE 3: REDISEÑO COMPLETO BASADO EN EJEMPLO HTML ✅ EN PROGRESO
+- [ ] Hero más impactante: "SyntropySoft: Forjando el Futuro del DevSecOps"
+- [ ] Sección de Soluciones con cards individuales
+- [ ] Deep Dive de SyntropyLog con características detalladas
+- [ ] Sección About: "Construido por Desarrolladores, para Desarrolladores"
+- [ ] Sección de Contacto con enlaces sociales
+- [ ] Navegación mejorada con scroll smooth
+- [ ] Mobile menu funcional
+
+## FASE 4: REFACTORIZACIÓN CON SRP 🎯 ✅ COMPLETADA
+### 4.1 Crear estructura de carpetas
+- [ ] Crear `src/components/ui/` para componentes puros
+- [ ] Crear `src/components/sections/` para secciones
+- [ ] Crear `src/components/layout/` para layout
+- [ ] Crear `src/services/` para servicios
+- [ ] Crear `src/types/` para tipos TypeScript
+- [ ] Crear `src/utils/` para utilidades
+
+### 4.2 Componentes UI base (SRP: Solo presentación) ✅ COMPLETADO
+- [x] Button.tsx - Componente de botón reutilizable
+- [x] Card.tsx - Componente de tarjeta
+- [x] Tooltip.tsx - Componente de tooltip
+- [x] Navigation.tsx - Componente de navegación
+
+### 4.3 Servicios (SRP: Lógica de negocio) ✅ COMPLETADO
+- [x] translationService.ts - Manejo de traducciones
+- [x] contactService.ts - Manejo de formulario de contacto
+
+### 4.4 Hooks (SRP: Lógica de estado) ✅ COMPLETADO
+- [x] useTranslations.ts - Hook para traducciones
+- [x] useScrollAnimation.ts - Hook para animaciones
+- [x] useContactForm.ts - Hook para formulario
+
+### 4.5 Refactorizar componentes existentes
+- [x] Hero.tsx - Separar UI de lógica ✅ COMPLETADO
+- [x] Ecosystem.tsx - Separar UI de lógica ✅ COMPLETADO
+- [x] Header.tsx - Separar UI de lógica ✅ COMPLETADO
+- [x] Footer.tsx - Separar UI de lógica ✅ COMPLETADO
+
+## FASE 5: NUEVAS SECCIONES
+Performance & Benchmarks
+Testing Revolution
+Examples Showcase
+Security & Transparency

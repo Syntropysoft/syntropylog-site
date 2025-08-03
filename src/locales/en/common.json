@@ -15,7 +15,8 @@
     "starOnGithub": "⭐ Star on GitHub",
     "installNpm": "npm install syntropylog",
     "tryExamples": "Try Examples",
-    "joinCommunity": "Join Community"
+    "joinCommunity": "Join Community",
+    "exploreEcosystem": "Explore Ecosystem"
   },
   "footer": {
     "copyright": "© 2024 SyntropyLog — Open source Apache 2.0. Built by SyntropySoft.",

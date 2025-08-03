@@ -1,9 +1,10 @@
 'use client';
 
-import {useTranslations} from '../hooks/useTranslations';
-import {useRouter, usePathname} from 'next/navigation';
+import { useTranslations } from '../hooks/useTranslations';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import Navigation from './ui/Navigation';
 
 export default function Header() {
   const { t } = useTranslations();
@@ -15,6 +16,30 @@ export default function Header() {
     const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '');
     router.push(`/${locale}${pathWithoutLocale}`);
   };
+
+  // Navigation items following SRP - data separated from presentation
+  const navigationItems = [
+    {
+      label: t('navigation.features', 'common') as string,
+      href: '#features',
+      external: false
+    },
+    {
+      label: t('navigation.docs', 'common') as string,
+      href: 'https://syntropysoft.github.io/syntropylog-doc/',
+      external: true
+    },
+    {
+      label: t('navigation.examples', 'common') as string,
+      href: 'https://github.com/Syntropysoft/syntropylog-examples-',
+      external: true
+    },
+    {
+      label: t('navigation.github', 'common') as string,
+      href: 'https://github.com/Syntropysoft/SyntropyLog',
+      external: true
+    }
+  ];
 
   return (
     <header className="fixed top-0 w-full bg-sky-950/80 backdrop-blur-lg border-b border-sky-600/30 z-50">
@@ -29,24 +54,11 @@ export default function Header() {
               height={32}
               className="rounded-lg"
             />
-            <span className="text-xl font-bold">SyntropyLog</span>
+            <span className="text-xl font-bold">Syntropysoft</span>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="hover:text-blue-300 transition">
-              {t('navigation.features', 'common') as string}
-            </Link>
-            <Link href="https://syntropysoft.github.io/syntropylog-doc/" className="hover:text-blue-300 transition">
-              {t('navigation.docs', 'common') as string}
-            </Link>
-            <Link href="https://github.com/Syntropysoft/syntropylog-examples-" className="hover:text-blue-300 transition">
-                {t('navigation.examples', 'common') as string}
-            </Link>
-            <Link href="https://github.com/Syntropysoft/SyntropyLog" className="hover:text-blue-300 transition">
-              {t('navigation.github', 'common') as string}
-            </Link>
-          </nav>
+          {/* Navigation Component */}
+          <Navigation items={navigationItems} />
 
           {/* Language Switcher */}
           <div className="flex items-center space-x-4">
