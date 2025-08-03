@@ -1,13 +1,12 @@
 'use client';
 
 import { useTranslations } from '../../hooks/useTranslations';
-import CodeExample from './CodeExample';
+import CodeExample from '../sections/CodeExample';
 
 const steps = [
   {
     translationKey: 'step1_label',
-    code: 'npm install syntropylog',
-    language: 'bash'
+    code: 'npm install syntropylog'
   },
   {
     translationKey: 'step2_label',
@@ -23,8 +22,7 @@ await syntropyLog.init({
 
 // Use it immediately
 const logger = syntropyLog.getLogger();
-logger.info('Hello, SyntropyLog!');`,
-    language: 'javascript'
+logger.info('Hello, SyntropyLog!');`
   }
 ];
 
@@ -44,7 +42,6 @@ export default function GettingStarted() {
             </label>
             <CodeExample 
               code={step.code} 
-              language={step.language} 
             />
           </div>
         ))}

@@ -51,7 +51,7 @@ export function useContactForm(initialData?: Partial<ContactFormData>) {
   };
 
   const validateField = (field: keyof ContactFormData) => {
-    const fieldData = { [field]: state.data[field] } as ContactFormData;
+    const fieldData = { [field]: state.data[field] } as unknown as ContactFormData;
     const validation = contactService.validateForm(fieldData);
     
     if (!validation.success && validation.errors) {
@@ -59,7 +59,7 @@ export function useContactForm(initialData?: Partial<ContactFormData>) {
         ...prev,
         errors: {
           ...prev.errors,
-          [field]: validation.errors[field] || '',
+          [field]: validation.errors?.[field] || '',
         },
       }));
     }
