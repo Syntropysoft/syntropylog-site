@@ -12,7 +12,7 @@ export default function LoadingProvider({ children }: LoadingProviderProps) {
 
   return (
     <>
-      {isLoading && <LoadingSpinner text="Cargando SyntropySoft..." />}
+      {isLoading && <LoadingSpinner text="loading SyntropySoft..." />}
       <div className={`page-transition ${!isLoading ? 'loaded' : ''}`}>
         {children}
       </div>

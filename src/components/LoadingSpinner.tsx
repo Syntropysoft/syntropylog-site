@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
 }
 
 export default function LoadingSpinner({ 
-  text = "Cargando SyntropySoft...", 
+  text = "Loading SyntropySoft...", 
   showFor = 2000 
 }: LoadingSpinnerProps) {
   const [isVisible, setIsVisible] = useState(true);
