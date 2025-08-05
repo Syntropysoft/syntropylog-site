@@ -11,7 +11,10 @@ interface Tool {
   name: string;
   description: string;
   cta: string;
+  ctaUrl?: string;
   status?: string;
+  npm?: string;
+  help?: string;
 }
 
 interface EcosystemData {
@@ -46,7 +49,10 @@ export default function Features() {
     isPrimary: tool.name === 'SyntropyLog',
     aosDelay: `${(index + 1) * 100}`,
     cta: tool.cta,
-    status: tool.status
+    ctaUrl: tool.ctaUrl,
+    status: tool.status,
+    npm: tool.npm,
+    help: tool.help
   }));
 
   return (
@@ -92,9 +98,32 @@ export default function Features() {
                 )}
               </p>
 
+              {/* NPM Package */}
+              {product.npm && (
+                <div className='mb-3'>
+                  <code className='bg-slate-700 text-sky-300 px-3 py-1 rounded text-sm font-mono'>
+                    {product.npm}
+                  </code>
+                </div>
+              )}
+
+              {/* Help Link */}
+              {product.help && (
+                <div className='mb-4'>
+                  <a 
+                    href={product.help}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className='text-sm text-slate-500 hover:text-sky-400 transition-colors'
+                  >
+                    {t('common.view_documentation', 'home') || '📖 Ver documentación'}
+                  </a>
+                </div>
+              )}
+
               {/* Call to Action */}
               <a 
-                href={product.id === 'syntropylog' ? '#syntropylog' : `https://github.com/Syntropysoft/${product.id}`} 
+                href={product.ctaUrl || (product.id === 'syntropylog' ? '#syntropylog' : `https://www.npmjs.com/package/@syntropysoft/${product.id}`)} 
                 target={product.id === 'syntropylog' ? '_self' : '_blank'}
                 rel={product.id === 'syntropylog' ? '' : 'noopener noreferrer'}
                 className='font-semibold text-sky-400 hover:text-sky-300 transition-colors'

@@ -23,6 +23,12 @@ export default function Footer() {
       href: 'https://syntropysoft.github.io/syntropylog-doc/',
       external: true
     }
+    // TODO: Uncomment when Patreon is ready
+    // {
+    //   label: t('navigation.patreon', 'common') as string,
+    //   href: 'https://www.patreon.com/c/syntropysoft',
+    //   external: true
+    // }
   ];
 
   return (

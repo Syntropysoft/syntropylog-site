@@ -55,6 +55,7 @@
         "description": "Del caos a la claridad. Trazabilidad distribuida, correlación automática y logging sin boilerplate para equipos de alto rendimiento.",
         "features": ["Zero Boilerplate", "Correlación Automática", "Alto Rendimiento", "Revolución en Testing"],
         "npm": "npm install syntropylog",
+        "help": "https://syntropysoft.github.io/syntropylog-doc/",
         "color": "blue",
         "cta": "Prueba SyntropyLog Gratis"
       },
@@ -64,8 +65,10 @@
         "description": "Desarrollo frontend moderno con integración perfecta al ecosistema SyntropySoft.",
         "features": ["React Moderno", "TypeScript First", "Integración Ecosistema", "Optimizado Rendimiento"],
         "npm": "npm install @syntropysoft/syntropyfront",
+        "help": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
+        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
         "color": "green",
-        "cta": "Ver en GitHub"
+        "cta": "Ver en NPM"
       },
       {
         "name": "Praetorian",
@@ -73,8 +76,10 @@
         "description": "Seguridad y gobernanza de nivel empresarial para tus aplicaciones Node.js.",
         "features": ["Seguridad Primero", "Listo para Compliance", "Escaneo Automatizado", "Grado Empresarial"],
         "npm": "npm install @syntropysoft/praetorian",
+        "help": "https://www.npmjs.com/package/@syntropysoft/praetorian",
+        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/praetorian",
         "color": "purple",
-        "cta": "Ver en GitHub",
+        "cta": "Ver en NPM",
         "status": "En desarrollo"
       }
     ]
@@ -144,5 +149,8 @@
     "examples": "32 ejemplos de producción",
     "coverage": "88.93% cobertura de tests",
     "version": "v0.7.0 estable"
+  },
+  "common": {
+    "view_documentation": "📖 Ver documentación"
   }
 } 

@@ -55,6 +55,7 @@
         "description": "From chaos to clarity. Distributed tracing, automatic correlation, and zero-boilerplate logging for high-performance teams.",
         "features": ["Zero Boilerplate", "Automatic Correlation", "High Performance", "Testing Revolution"],
         "npm": "npm install syntropylog",
+        "help": "https://syntropysoft.github.io/syntropylog-doc/",
         "color": "blue",
         "cta": "Try SyntropyLog Free"
       },
@@ -64,8 +65,10 @@
         "description": "Modern frontend development with seamless integration to the SyntropySoft ecosystem.",
         "features": ["Modern React", "TypeScript First", "Ecosystem Integration", "Performance Optimized"],
         "npm": "npm install @syntropysoft/syntropyfront",
+        "help": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
+        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
         "color": "green",
-        "cta": "View on GitHub"
+        "cta": "View on NPM"
       },
       {
         "name": "Praetorian",
@@ -73,8 +76,10 @@
         "description": "Enterprise-grade security and governance for your Node.js applications.",
         "features": ["Security First", "Compliance Ready", "Automated Scanning", "Enterprise Grade"],
         "npm": "npm install @syntropysoft/praetorian",
+        "help": "https://www.npmjs.com/package/@syntropysoft/praetorian",
+        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/praetorian",
         "color": "purple",
-        "cta": "View on GitHub",
+        "cta": "View on NPM",
         "status": "In Development"
       }
     ]
@@ -144,5 +149,8 @@
     "examples": "32 production examples",
     "coverage": "88.93% test coverage",
     "version": "v0.7.0 stable"
+  },
+  "common": {
+    "view_documentation": "📖 View documentation"
   }
 } 

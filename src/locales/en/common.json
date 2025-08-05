@@ -7,7 +7,8 @@
     "blog": "Blog",
     "community": "Community",
     "github": "GitHub",
-    "npm": "NPM"
+    "npm": "NPM",
+    "patreon": "Patreon"
   },
   "buttons": {
     "getStarted": "Get Started",

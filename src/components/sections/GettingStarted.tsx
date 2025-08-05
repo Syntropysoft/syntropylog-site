@@ -48,7 +48,7 @@ export default function GettingStarted() {
         
         <div className="flex justify-center pt-4">
           <a 
-            href="https://github.com/Syntropysoft/syntropylog" 
+            href="https://syntropysoft.github.io/syntropylog-doc/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105"
