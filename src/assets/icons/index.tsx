@@ -1,7 +1,7 @@
 import React from 'react';
 
 // SyntroJS Icon - Bolt/Lightning icon for FastAPI-inspired framework
-export const SyntroJSIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h-8 text-sky-400' }) => (
+export const SyntroJSIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h-8 text-emerald-400' }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ export const SyntroJSIcon: React.FC<{ className?: string }> = ({ className = 'w-
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+      d="M3.75 13.5l6.5-7L7.5 10.5h8.25l-2.75 6.75 2.25-5.5H3.75z"
     />
   </svg>
 );
