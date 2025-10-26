@@ -2,6 +2,7 @@
 
 import { useTranslations } from '../hooks/useTranslations';
 import {
+  SyntroJSIcon,
   SyntropyLogIcon,
   SyntropyFrontIcon,
   PraetorianIcon,
@@ -40,13 +41,15 @@ export default function Features() {
   const ecosystemProducts = tools.map((tool: Tool, index: number) => ({
     id: tool.name.toLowerCase().replace(/\s+/g, ''),
     name: tool.name,
-    icon: tool.name === 'SyntropyLog' ? <SyntropyLogIcon /> : 
+    icon: tool.name === 'SyntroJS' ? <SyntroJSIcon /> :
+          tool.name === 'SyntropyLog' ? <SyntropyLogIcon /> : 
           tool.name === 'SyntropyFront' ? <SyntropyFrontIcon /> : 
           <PraetorianIcon />,
-    emoji: tool.name === 'SyntropyLog' ? '🔍' : 
+    emoji: tool.name === 'SyntroJS' ? '⚡' :
+           tool.name === 'SyntropyLog' ? '🔍' : 
            tool.name === 'SyntropyFront' ? '🎨' : '🏛️',
     description: tool.description,
-    isPrimary: tool.name === 'SyntropyLog',
+    isPrimary: tool.name === 'SyntroJS',
     aosDelay: `${(index + 1) * 100}`,
     cta: tool.cta,
     ctaUrl: tool.ctaUrl,
@@ -69,7 +72,7 @@ export default function Features() {
         </div>
 
         {/* Products Grid */}
-        <div className='grid md:grid-cols-3 gap-8'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
           {ecosystemProducts.map((product) => (
             <div
               key={product.id}
@@ -123,7 +126,7 @@ export default function Features() {
 
               {/* Call to Action */}
               <a 
-                href={product.ctaUrl || (product.id === 'syntropylog' ? '#syntropylog' : `https://www.npmjs.com/package/@syntropysoft/${product.id}`)} 
+                href={product.ctaUrl || (product.id === 'syntropylog' ? '#syntropylog' : product.id === 'syntrojs' ? 'https://www.npmjs.com/package/syntrojs' : `https://www.npmjs.com/package/@syntropysoft/${product.id}`)} 
                 target={product.id === 'syntropylog' ? '_self' : '_blank'}
                 rel={product.id === 'syntropylog' ? '' : 'noopener noreferrer'}
                 className='font-semibold text-sky-400 hover:text-sky-300 transition-colors'

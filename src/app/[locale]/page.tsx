@@ -1,8 +1,10 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
+import SyntroJSDeepDive from '@/components/SyntroJSDeepDive';
 import SyntropyLogDeepDive from '@/components/SyntropyLogDeepDive';
 import AboutUs from '@/components/AboutUs';
+import Sponsors from '@/components/sections/Sponsors';
 import Footer from '@/components/Footer';
 
 export default async function HomePage() {
@@ -12,8 +14,10 @@ export default async function HomePage() {
       <main className="pt-20">
         <Hero />
         <Features />
+        <SyntroJSDeepDive />
         <SyntropyLogDeepDive />
         <AboutUs />
+        <Sponsors />
       </main>
       <Footer />
     </div>

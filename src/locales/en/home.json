@@ -46,9 +46,20 @@
   },
   "ecosystem": {
     "title": "Complete Ecosystem",
-    "subtitle": "Three powerful tools, one unified platform",
+    "subtitle": "Four powerful tools, one unified platform",
     "description": "SyntropySoft provides a complete solution for modern Node.js applications, from observability to frontend and security.",
     "tools": [
+      {
+        "name": "SyntroJS",
+        "title": "Backend Framework",
+        "description": "FastAPI for Node.js. Build high-performance APIs that run on Node.js and Bun without changing any code. Automatic validation and generated documentation.",
+        "features": ["Works on Node.js and Bun", "Automatic Validation", "High Performance", "Zero Config"],
+        "npm": "npm install syntrojs",
+        "help": "https://github.com/Syntropysoft/syntrojs",
+        "ctaUrl": "https://www.npmjs.com/package/syntrojs?activeTab=readme",
+        "color": "emerald",
+        "cta": "Try SyntroJS"
+      },
       {
         "name": "SyntropyLog",
         "title": "Observability Framework",
@@ -83,6 +94,37 @@
         "status": "In Development"
       }
     ]
+  },
+  "sintrojs": {
+    "title": "SyntroJS ⚡ – FastAPI for Node.js & Bun",
+    "subtitle": "The world's first dual-runtime framework. Write once, run on Node.js and Bun with maximum performance. Zero code changes.",
+    "description": "SyntroJS is the only framework that works on Node.js AND Bun without changing absolutely any code. Get automatic validation, generated documentation, and exceptional performance on both runtimes.",
+    "features_title": "Key Features:",
+    "dual_runtime": {
+      "title": "Dual Runtime",
+      "description": "Same code runs on Node.js and Bun. Zero code changes, maximum performance."
+    },
+    "fastapi_dx": {
+      "title": "FastAPI-like DX",
+      "description": "Automatic validation, type safety, and interactive docs. Best developer experience for Node.js."
+    },
+    "testing": {
+      "title": "Testing Is Simple",
+      "description": "TinyTest makes writing tests as easy as creating endpoints. Mutation testing in seconds."
+    },
+    "performance": {
+      "title": "High Performance",
+      "description": "3.8x faster than Fastify with Bun. 89.3% of Fastify's performance with Node.js."
+    },
+    "interactive_docs": {
+      "title": "Interactive Documentation",
+      "description": "Automatic Swagger UI and ReDoc generation. Documentation that writes itself."
+    },
+    "getting_started_title": "Easy to Get Started",
+    "step1": "1. Install the package:",
+    "step2": "2. Create your API:",
+    "view_npm": "View on NPM",
+    "view_github": "View Code on GitHub"
   },
   "syntropylog": {
     "title": "SyntropyLog 🔍 – From Chaos to Clarity",
@@ -152,5 +194,24 @@
   },
   "common": {
     "view_documentation": "📖 View documentation"
+  },
+  "sponsors": {
+    "title": "Our Sponsors",
+    "subtitle": "Thanks to those who make this project possible",
+    "description": "SyntropyLog is possible thanks to the support of our community and sponsors.",
+    "empty_title": "Be the first sponsor",
+    "empty_description": "Help keep SyntropyLog as an open source project and get exclusive benefits.",
+    "become_sponsor": "Become a Sponsor",
+    "contact_us": "Contact Us",
+    "support_options_title": "Other ways to support",
+    "star_github": "Star on GitHub",
+    "star_description": "Help more developers discover SyntropyLog.",
+    "star_button": "Go to GitHub",
+    "report_issues": "Report Issues",
+    "issues_description": "Help improve the project by reporting bugs or suggestions.",
+    "issues_button": "View Issues",
+    "share": "Share",
+    "share_description": "Share SyntropyLog with your team and community.",
+    "share_button": "Share on Twitter"
   }
 } 
