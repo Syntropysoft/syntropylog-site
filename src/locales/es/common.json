@@ -8,7 +8,8 @@
     "community": "Comunidad",
     "github": "GitHub",
     "npm": "NPM",
-    "patreon": "Patreon"
+    "patreon": "Patreon",
+    "tools": "Herramientas"
   },
   "buttons": {
     "getStarted": "Comenzar",
