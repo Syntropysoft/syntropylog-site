@@ -15,8 +15,8 @@
     "subtitle": "Todo lo que necesitas para observabilidad moderna",
     "items": [
       {
-        "title": "Zero Boilerplate",
-        "description": "Comienza en 30 segundos con propagación automática de contexto"
+        "title": "Minimal Setup",
+        "description": "Configuración, eventos (ready/error), espera de inicialización y middleware de contexto; luego usa getLogger() y contexto en cualquier parte."
       },
       {
         "title": "Correlación Automática",
@@ -63,8 +63,8 @@
       {
         "name": "SyntropyLog",
         "title": "Framework de Observabilidad",
-        "description": "Del caos a la claridad. Trazabilidad distribuida, correlación automática y logging sin boilerplate para equipos de alto rendimiento.",
-        "features": ["Zero Boilerplate", "Correlación Automática", "Alto Rendimiento", "Revolución en Testing"],
+        "description": "Del caos a la claridad. Trazabilidad distribuida, correlación automática y minimal setup para equipos de alto rendimiento.",
+        "features": ["Minimal Setup", "Correlación Automática", "Alto Rendimiento", "Revolución en Testing"],
         "npm": "npm install syntropylog",
         "help": "https://syntropysoft.github.io/syntropylog-doc/",
         "color": "blue",
@@ -143,8 +143,8 @@
         "description": "Solo 203 bytes más que Pino (1.03x) - tree-shaking inteligente que solo carga lo que usas."
       },
       {
-        "title": "Zero Boilerplate",
-        "description": "Comienza en 30 segundos con propagación automática de contexto entre servicios."
+        "title": "Minimal Setup",
+        "description": "Configuración, eventos (ready/error), espera de inicialización y middleware de contexto; con eso listo, repartes observabilidad por toda la app."
       },
       {
         "title": "Distributed Tracing Automático",
@@ -212,6 +212,6 @@
     "issues_button": "Ver Issues",
     "share": "Compartir",
     "share_description": "Comparte SyntropyLog con tu equipo y comunidad.",
-    "share_button": "Compartir en Twitter"
+    "share_button": "Compartir en X"
   }
 } 

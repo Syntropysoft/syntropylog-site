@@ -15,8 +15,8 @@
     "subtitle": "Everything you need for modern observability",
     "items": [
       {
-        "title": "Zero Boilerplate",
-        "description": "Get started in 30 seconds with automatic context propagation"
+        "title": "Minimal Setup",
+        "description": "Configuration, events (ready/error), wait for init, and context middleware; then use getLogger() and context everywhere."
       },
       {
         "title": "Automatic Correlation",
@@ -63,8 +63,8 @@
       {
         "name": "SyntropyLog",
         "title": "Observability Framework",
-        "description": "From chaos to clarity. Distributed tracing, automatic correlation, and zero-boilerplate logging for high-performance teams.",
-        "features": ["Zero Boilerplate", "Automatic Correlation", "High Performance", "Testing Revolution"],
+        "description": "From chaos to clarity. Distributed tracing, automatic correlation, and minimal setup for high-performance teams.",
+        "features": ["Minimal Setup", "Automatic Correlation", "High Performance", "Testing Revolution"],
         "npm": "npm install syntropylog",
         "help": "https://syntropysoft.github.io/syntropylog-doc/",
         "color": "blue",
@@ -143,8 +143,8 @@
         "description": "Only 203 bytes larger than Pino (1.03x) - intelligent tree-shaking that only loads what you use."
       },
       {
-        "title": "Zero Boilerplate",
-        "description": "Get started in 30 seconds with automatic context propagation across services."
+        "title": "Minimal Setup",
+        "description": "Configuration, events (ready/error), wait for init, and context middleware; with that in place, observability spreads across your app."
       },
       {
         "title": "Automatic Distributed Tracing",
@@ -212,6 +212,6 @@
     "issues_button": "View Issues",
     "share": "Share",
     "share_description": "Share SyntropyLog with your team and community.",
-    "share_button": "Share on Twitter"
+    "share_button": "Share on X"
   }
 } 

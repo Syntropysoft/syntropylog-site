@@ -173,7 +173,7 @@ export default function Sponsors() {
                 rel='noopener noreferrer'
                 className='text-sky-400 hover:text-sky-300 text-sm font-medium'
               >
-                {t('sponsors.share_button', 'home') || 'Compartir en Twitter'} →
+                {t('sponsors.share_button', 'home') || 'Compartir en X'} →
               </a>
             </div>
           </div>

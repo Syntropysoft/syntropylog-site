@@ -12,17 +12,15 @@ const steps = [
     translationKey: 'step2_label',
     code: `import { syntropyLog } from 'syntropylog';
 
-// Initialize with minimal configuration
-await syntropyLog.init({
-  logger: {
-    serviceName: 'my-app',
-    level: 'info',
-  },
+// Minimal setup: subscribe to ready/error, then init
+syntropyLog.on('ready', () => {
+  const logger = syntropyLog.getLogger('app');
+  logger.info('Hello, SyntropyLog!');
 });
-
-// Use it immediately
-const logger = syntropyLog.getLogger();
-logger.info('Hello, SyntropyLog!');`
+syntropyLog.on('error', (err) => console.error(err));
+syntropyLog.init({
+  logger: { serviceName: 'my-app', level: 'info' },
+});`
   }
 ];
 
