@@ -5,18 +5,8 @@
     "start": "Empezar",
     "docs": "Documentación",
     "examples": "Ejemplos",
-    "tools": "Herramientas",
     "github": "GitHub",
     "npm": "NPM"
-  },
-  "buttons": {
-    "getStarted": "Comenzar",
-    "viewDocs": "Ver Documentación",
-    "starOnGithub": "⭐ Dar Star en GitHub",
-    "installNpm": "npm install syntropylog",
-    "tryExamples": "Probar Ejemplos",
-    "joinCommunity": "Unirse a la Comunidad",
-    "exploreEcosystem": "Explorar Ecosistema"
   },
   "footer": {
     "copyright": "© 2024 SyntropyLog — Código abierto Apache 2.0. Desarrollado por SyntropySoft.",

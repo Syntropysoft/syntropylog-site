@@ -10,7 +10,6 @@ const LINKS: { key: string; href: string; external?: boolean }[] = [
   { key: 'start', href: '#start' },
   { key: 'docs', href: 'https://syntropysoft.github.io/syntropylog-doc/', external: true },
   { key: 'examples', href: 'https://github.com/Syntropysoft/syntropylog-examples', external: true },
-  { key: 'tools', href: 'https://cyberchef-production-75f0.up.railway.app/', external: true },
   { key: 'github', href: 'https://github.com/Syntropysoft/SyntropyLog', external: true },
 ];
 
