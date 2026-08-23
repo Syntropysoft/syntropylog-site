@@ -56,6 +56,20 @@ algo desmontado.
 - [ ] **Confirmar en el log de build de Vercel que usa pnpm.** Con `packageManager` pinneado debería,
       pero conviene verlo una vez.
 
+### Documentación
+- [ ] **`syntropysoft.github.io/syntropylog-doc` sigue publicada y no se va a mantener.** Se le quitó
+      el link del sitio (nav y footer), pero **eso no la despublica**: el repo `syntropylog-doc` es
+      público, GitHub Pages la sirve, y el buscador la tiene indexada. Último push 2026-03-15; no
+      menciona Python, .NET, slpy ni sl4n — documenta la etapa Node-only contra un paquete que hoy va
+      por 2.1.0. Una doc huérfana y equivocada hace más daño que una linkeada: alguien la encuentra
+      buscando, sigue instrucciones viejas y concluye que el producto está roto.
+      Opciones: apagar GitHub Pages (404 limpio) · reemplazarla por una sola página que diga que está
+      obsoleta y apunte a los README y a `llms.txt` (captura el tráfico de búsqueda y lo redirige) ·
+      archivar el repo. La segunda es la mejor para reputación.
+- [ ] **Decidir dónde vive la documentación.** Hoy, de hecho, son los README de cada implementación
+      —el de slpy tiene 37 mil caracteres— más `llms.txt`. Si esa es la respuesta, conviene decirlo
+      en el sitio en vez de dejar el hueco.
+
 ### Contenido nuevo (Partes 2 y 3)
 - [ ] **Maquetas conceptuales** de login/dashboard (syntroAuth) y del depósito de logs + libro de
       actas. No funcionales, y **rotuladas como maquetas de forma visible**: un senior que clickea un

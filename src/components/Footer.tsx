@@ -3,7 +3,6 @@ import type { CommonMessages } from '@/services/messages';
 const LINKS: { key: string; href: string }[] = [
   { key: 'github', href: 'https://github.com/Syntropysoft/SyntropyLog' },
   { key: 'npm', href: 'https://www.npmjs.com/package/syntropylog' },
-  { key: 'docs', href: 'https://syntropysoft.github.io/syntropylog-doc/' },
 ];
 
 const LINKEDIN = 'https://www.linkedin.com/in/gabriel-alejandro-gomez-652a5111/';
