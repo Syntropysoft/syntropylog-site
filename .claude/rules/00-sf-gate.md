@@ -39,40 +39,29 @@ Rama única: **`main`**. No hay `develop`. Deploy automático desde `main`.
 ## Gate
 
 ```
-npx next build     # compila + corre TypeScript. Es LO ÚNICO que hay hoy. Verde al 2026-08-23.
+pnpm lint      # eslint con la flat config nativa de eslint-config-next 16
+pnpm build     # compila + typecheck
 ```
 
-**No hay más gate que ese, y hay que decirlo en voz alta cada vez.** Concretamente:
+Los dos corren en CI (`.github/workflows/ci.yml`, job `gate`) en push a `main` y en cada PR, con
+`pnpm install --frozen-lockfile` adelante — que **es parte del gate**: falla si el lockfile no
+satisface `package.json`, el desajuste exacto que este repo tuvo meses sin que nada lo exhibiera.
+La versión de pnpm sale de `packageManager` y la de Node de `.nvmrc`.
 
-- ❌ **No hay tests.** Cero. No hay runner, no hay `test` en `scripts`, no hay un solo `.test.tsx`.
-- ❌ **No hay CI.** El directorio `.github/` **no existe**. Nada corre en un push.
-- ❌ **`npm run lint` está roto de dos maneras distintas**, y las dos importan:
-  1. el script es `next lint`, y **`next lint` se eliminó en Next 16**. Hoy `next` interpreta
-     `lint` como el directorio del proyecto y falla con
-     `Invalid project directory provided, no such directory: .../lint`. Sale con **código 1**, así
-     que parece "el lint encuentra errores" cuando en realidad **no linteó nada**.
-  2. `npx eslint .` tampoco corre: `eslint.config.mjs` envuelve `next/core-web-vitals` en
-     `FlatCompat`, y con `eslint-config-next@16` + `eslint@9.39.4` eso revienta con
-     `TypeError: Converting circular structure to JSON`. `eslint-config-next` 16 ya exporta flat
-     config nativa — el `FlatCompat` es el que sobra.
+❌ **Todavía no hay tests.** Ni runner ni un solo archivo. Cuando un cambio se verifica a mano, se
+dice **qué** se miró y **dónde** — ❌ NEVER "anda bien" como evidencia. Está fichado en `docs/TODO.md`.
 
-  ✅ **Arreglar el lint es el primer trabajo de infraestructura**, antes que cualquier feature: sin
-  lint, `next build` es la única red y solo atrapa errores de tipos.
+⚠️ **Verificar los status codes y los headers exige servir el build**, no el dev server:
+`pnpm build && pnpm start`. Es el único lugar donde se puede comprobar que una ruta da 404.
 
-**Gate objetivo** (lo que esta ficha debería declarar cuando el repo esté sano):
-`pnpm lint` → `pnpm build` → `pnpm test` (unit) → chequeo de paridad i18n → Lighthouse/axe en las
-rutas reales. Hoy solo el segundo existe.
+⚠️ **Auditar con `pnpm audit`, y separar build de runtime.** Al 2026-08-23: 23 hallazgos
+(8 moderate, 15 high) en total y **`pnpm audit --prod` limpio** — todo es toolchain de build, nada
+llega al visitante. En CI corre informativo, sin bloquear.
 
-⚠️ **`npm audit` acá miente por partida doble.** `node_modules` está instalado con **pnpm** (el
-árbol tiene `.pnpm/`), pero `npm audit` lee `package-lock.json`, que es el **otro** lockfile. Al
-2026-08-23 reporta 12 vulnerabilidades (1 critical: `tar` vía `sharp`), todas transitivas de
-dev/optional y ninguna en el bundle que se sirve. Auditar con `pnpm audit`, y arreglar antes los
-dos lockfiles (abajo).
-
-⚠️ **Verificar con qué Node corre el build, no cuál dice el gestor de versiones.** El repo
-declara `engines.node >=20.9.0` y `.nvmrc` dice `20`. Al 2026-08-23, en la máquina del maintainer, el
-gestor anuncia una versión y `node -v` devuelve otra (mayor). Antes de atribuir un fallo a la versión
-de Node, correr `node -v` en el mismo shell que corre el build.
+⚠️ **Verificar con qué Node corre el build, no cuál dice el gestor de versiones.** `.nvmrc` dice `20`
+y `engines.node` pide `>=20.9.0`. En la máquina del maintainer el gestor anuncia una versión y
+`node -v` devuelve otra, mayor. Antes de culpar a la versión de Node, correr `node -v` en el mismo
+shell que corre el build.
 
 ## Invariantes
 
@@ -91,56 +80,22 @@ de Node, correr `node -v` en el mismo shell que corre el build.
 - ❌ NEVER prometer en el sitio una capacidad que el producto no tiene. El sitio le habla a los
   mismos repos de la familia; una afirmación de más acá es una promesa incumplida allá.
 - ❌ NEVER dejar una página de debug accesible en producción.
-- ✅ ALWAYS que un cambio observable quede reflejado en el estado (hoy no hay dónde — ver abajo).
+- ❌ NEVER `npm` ni `yarn`: el gestor es **pnpm**, pinneado en `packageManager`. Un `package-lock.json`
+  que reaparezca es un lockfile en conflicto, no un respaldo.
+- ✅ ALWAYS que un cambio observable quede reflejado en `docs/TODO.md`.
 
-## Gotchas conocidos (todos verificados el 2026-08-23)
+## Gotchas conocidos
 
-**`/[locale]` se traga TODAS las rutas de un segmento y devuelve 200.** No hay validación de locale
-ni `generateStaticParams`. Verificado en producción: `/fr`, `/admin`, `/esto-no-existe`,
-`/robots.txt` y `/sitemap.xml` devuelven **HTTP 200 con el HTML de la home**. `/robots.txt` sale con
-`content-type: text/html`. Solo las rutas de dos segmentos (`/en/nada`) dan 404 de verdad. Es un
-soft-404 masivo: contenido duplicado infinito para el crawler y ningún `robots.txt` real. La ruta
-`/[locale]` es `ƒ` (dinámica, SSR por request) justamente porque no hay params estáticos.
+> Los de esta sección están **vigentes**. Lo que se arregló en la normalización del 2026-08-23 está
+> al final, bajo "Trampas ya desactivadas" — se conservan porque explican por qué el código quedó
+> como quedó, y volver atrás las reactiva.
 
 **El copy traducido NO está en el HTML que sirve el servidor.** `useTranslations` es un hook
 `'use client'` que hace `import()` de los JSON de `src/locales/` dentro de un `useEffect`. Verificado
 contra producción: `From Chaos to Clarity`, `Explore Solutions` y `Core Features` dan **0
-ocurrencias** en el HTML servido de `/en`; `Observability` también da 0. Lo único que sí viaja es lo
-que está hardcodeado. Para una landing esto es el problema más caro que tiene el sitio: el contenido
-que vende existe solo después de hidratar.
-
-**Hay dos `next.config` y solo uno manda.** `next.config.js` **gana** — el build lo dice explícito
-(`✓ Running next.config.js`). `next.config.ts` existe, está vacío y es código muerto que parece
-config. Los headers de cache viven en el `.js`, duplicados además en `vercel.json`.
-
-**Hay dos lockfiles y NO empatan — uno contradice a `package.json`.** Verificado el 2026-08-23
-sobre lo commiteado en `main`:
-
-| | `package.json` pide | `package-lock.json` | `pnpm-lock.yaml` |
-|---|---|---|---|
-| `next` | `^16.1.6` | **16.1.6** ✅ | **15.4.3** ❌ |
-| `react` / `react-dom` | `^19.2.4` | **19.2.4** ✅ | **19.1.0** ❌ |
-
-El `pnpm-lock.yaml` versionado quedó congelado **antes** de la subida a Next 16 (commit `7e47904`),
-que se hizo con npm; nunca se regeneró. `package.json` tampoco pinnea `packageManager`.
-
-Consecuencia: **un `pnpm install --frozen-lockfile` sobre el árbol commiteado falla**, porque el lock
-no satisface el `package.json`. Que producción esté arriba es evidencia fuerte de que Vercel está
-construyendo con **npm** desde `package-lock.json` — fuerte, pero indirecta: no está confirmado en el
-log de build de Vercel. ⚠️ Confirmarlo ahí antes de tocar nada de esto.
-
-Corolario práctico: quien corra `pnpm i` obtiene un árbol **distinto** del que se deploya (local
-resuelve Next 16.3.2 / React 19.2.8; producción, 16.1.6 / 19.2.4). Un bug que no reproduce puede ser
-eso y nada más.
-
-✅ El arreglo es **borrar uno**, no sincronizar los dos: dos locks coherentes que resuelven versiones
-distintas siguen siendo ambiguos. Elegir gestor es decisión del usuario; el resto de la familia usa
-**pnpm**. Cualquiera sea, va con `packageManager` pinneado en `package.json`, y **cambia lo que Vercel
-instala** — se publica por PR y se mira el preview.
-
-**Turbopack puede no inferir bien la raíz**: si hay un lockfile en algún ancestro del repo (típico:
-el home del usuario), el build avisa que lo ignoró y sugiere fijar `turbopack.root`. Es ruido local,
-no afecta el deploy.
+ocurrencias** en el HTML servido de `/en`; `Observability` también da 0. Lo único que viaja es lo
+hardcodeado. Para una landing es el problema más caro que tiene el sitio: el contenido que vende
+existe solo después de hidratar. Ficha abierta en `docs/TODO.md`.
 
 **`<html lang>` siempre dice `en`.** Está fijo en `src/app/layout.tsx`; el layout de `[locale]` pone
 el `lang` en un `<div>` interno. En `/es` el documento se declara en inglés — lo lee el lector de
@@ -148,41 +103,37 @@ pantalla y lo lee el crawler.
 
 **La metadata es única, fija y en español.** Vive solo en `src/app/layout.tsx`. No varía por locale,
 no hay `alternates`/`hreflang`, no hay Open Graph ni Twitter card, y no existen `sitemap.ts` ni
-`robots.ts` en ningún lado (buscado en `src/app/` y en `public/`).
+`robots.ts`.
 
-**Hay DOS implementaciones de contacto y ninguna funciona ni está conectada:**
-- `src/components/Contact.tsx` → `sections/ContactForm.tsx`: usa `emailjs-com` (el paquete legacy,
-  sucedido por `@emailjs/browser`) con las credenciales **literales** `YOUR_SERVICE_ID`,
-  `YOUR_TEMPLATE_ID`, `YOUR_USER_ID`, y **renderiza el mail personal del maintainer en la UI** (está
-  hardcodeado en ese archivo) junto con un cartel de "configuración necesaria".
-- `src/services/contactService.ts` + `src/hooks/useContactForm.ts`: `sendEmail()` es un **stub** que
-  duerme 1s y devuelve `success: true` sin mandar nada.
-
-  `Contact.tsx` **no lo importa nadie** — no está en `src/app/[locale]/page.tsx` — así que hoy no
-  hay exposición. Conectarlo tal como está publicaría el mail personal y mentiría "mensaje enviado".
-
-**`/test` está publicada en producción**: `https://syntropysoft.com/test` → 200, "Test Page — If you
-can see this, Vercel is working!". Es `src/app/test/page.tsx`.
-
-**Código sin referencias** (buscado en todo `src/`): `components/Contact.tsx`, `components/ui/Card.tsx`,
-`components/ui/Tooltip.tsx`. `Card` y `Tooltip` salieron del plan de refactor SRP y nunca se usaron.
-
-**Al clonar y correr `pnpm i` + un build, el árbol queda con dos archivos modificados, y son
-legítimos**: `tsconfig.json` (`jsx: preserve` → `react-jsx`, más `.next/dev/types`) lo reescribe
-Next 16 al arrancar, y `pnpm-lock.yaml` (+668/-302) lo regenera pnpm porque **el versionado está
-viejo** (ver el gotcha de los lockfiles). ❌ NEVER leerlos como trabajo abandonado de alguien: son
-salida de herramienta. Commitear el `tsconfig.json` es gratis; el lock, no — arrastra la decisión de
-gestor.
+**Una clave de traducción faltante no rompe nada: se publica.** `getTranslation` devuelve **la clave
+cruda** como texto visible. Por eso los locales `en` y `es` son gemelos y se tocan en el mismo
+commit. La lista de locales soportados tiene una sola fuente: `src/config/locales.ts`.
 
 **Rama huérfana**: `origin/vercel/react-server-components-cve-vu-149ycb` tiene 1 commit que `main` no
-tiene ("Fix React Server Components CVE vulnerabilities"), y `main` tiene 3 que ella no tiene. La
-abrió Vercel por un CVE. Sin verificar si el fix ya llegó por otra vía.
+tiene ("Fix React Server Components CVE vulnerabilities"). La abrió Vercel por un CVE. Sin verificar
+si el fix ya llegó con la subida a Next 16.
+
+### Trampas ya desactivadas (2026-08-23) — no reintroducirlas
+
+- **`next lint` no existe en Next 16.** Si vuelve a aparecer como script, `next` interpreta `lint`
+  como directorio y sale con **código 1**: parece que linteó y encontró errores, y no linteó nada.
+- **`eslint-config-next` 16 ya exporta flat config.** ❌ NEVER envolverlo en `FlatCompat`: revienta
+  con `TypeError: Converting circular structure to JSON`.
+- **Borrar una página bajo un segmento dinámico glotón no la hace 404.** `/[locale]` se tragaba toda
+  ruta de un nivel; borrar `src/app/test/page.tsx` la habría dejado cayendo al catch-all, sirviendo
+  la home con 200. Lo que la apaga es `dynamicParams = false` + `generateStaticParams`.
+- **El chequeo de filesystem de Vercel gana sobre un rewrite.** El rewrite `/favicon.ico →
+  /beaconLog-2.png` de `vercel.json` nunca se aplicó porque `public/favicon.ico` existe.
+- **Next resuelve `next.config.js` antes que `.ts`.** Cuando convivían, el `.ts` no se ejecutaba y
+  parecía config. Hoy solo existe el `.ts` y el build lo confirma imprimiendo cuál cargó.
+- **Dos lockfiles pueden no empatar y nadie se entera.** El `pnpm-lock.yaml` versionado resolvía
+  next 15.4.3 contra un `package.json` que pedía `^16.1.6`. Lo exhibe `--frozen-lockfile`, que por
+  eso está en CI.
 
 ## Fuente de verdad del estado
 
-**Hoy no hay.** No existe `CHANGELOG.md` ni `docs/TODO.md`. `plan-mejora-sitio.txt` (raíz) es el
-plan original y **está desactualizado**: marca "FASE 3 ✅ EN PROGRESO" con todas las casillas
-vacías y "FASE 4 ✅ COMPLETADA". Sirve como intención histórica, ❌ NEVER como estado.
+`docs/TODO.md` — Bugs y Gaps abiertos, con lo hecho al final. Es lo primero que se consulta y lo
+último que se actualiza.
 
-Crear `docs/TODO.md` es parte del primer `/sf-plan`. Hasta entonces, el estado es el código y esta
-ficha.
+`plan-mejora-sitio.txt` ya no está en la raíz: quedó archivado en
+`docs/historico/plan-mejora-sitio-2025.txt`. Es intención histórica, ❌ NEVER estado.
