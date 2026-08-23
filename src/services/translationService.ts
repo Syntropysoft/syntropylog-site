@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE, isLocale, LOCALES } from '@/config/locales';
+
 export interface TranslationMessages {
   [namespace: string]: Record<string, unknown>;
 }
@@ -9,8 +11,6 @@ export interface TranslationService {
 }
 
 class TranslationServiceImpl implements TranslationService {
-  private availableLocales = ['en', 'es'];
-
   async loadMessages(locale: string): Promise<TranslationMessages> {
     try {
       const homeMessages = await import(`../locales/${locale}/home.json`);
@@ -57,15 +57,15 @@ class TranslationServiceImpl implements TranslationService {
   }
 
   getAvailableLocales(): string[] {
-    return this.availableLocales;
+    return [...LOCALES];
   }
 
   isValidLocale(locale: string): boolean {
-    return this.availableLocales.includes(locale);
+    return isLocale(locale);
   }
 
   getDefaultLocale(): string {
-    return 'en';
+    return DEFAULT_LOCALE;
   }
 }
 

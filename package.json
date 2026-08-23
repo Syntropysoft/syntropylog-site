@@ -2,6 +2,7 @@
   "name": "syntropylog-landing",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=20.9.0"
   },
@@ -9,18 +10,17 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
-    "emailjs-com": "^3.2.0",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
