@@ -26,7 +26,7 @@
 ## Qué es
 
 Landing principal de **syntropysoft.com**, en producción sobre **Vercel**
-(`https://syntropysoft.com/` → 308 a `/en`, verificado). Repo `Syntropysoft/syntropylog-site`,
+(`https://syntropysoft.com/` → 307 a `/en`, verificado). Repo `Syntropysoft/syntropylog-site`,
 **público**. Vende tres productos: SyntroJS, SyntropyLog y Praetorian.
 
 Next.js **16.3.2** (App Router, Turbopack en dev **y** en build) · React **19.2.8** · TypeScript 5 ·
