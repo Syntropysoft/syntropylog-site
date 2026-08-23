@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Un push nuevo sobre la misma rama cancela el run anterior: el único resultado
+# que importa es el del último commit.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: lint + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # Lee packageManager de package.json, así CI y local resuelven la misma
+      # versión de pnpm sin repetir el número acá.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      # --frozen-lockfile es parte del gate, no una optimización: falla si el
+      # lockfile no satisface package.json. Ese desajuste ya existió en este
+      # repo y pasó meses sin que nada lo exhibiera.
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
+
+      # Informativo: no rompe el build. Las de runtime sí importan y hoy no hay
+      # ninguna; las de toolchain se revisan sin bloquear.
+      - name: Audit (solo dependencias de producción)
+        run: pnpm audit --prod
+        continue-on-error: true
