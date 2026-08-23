@@ -1,6 +1,7 @@
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { LOCALES } from '@/config/locales';
+import { DEFAULT_LOCALE, isLocale, LOCALES, type Locale } from '@/config/locales';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,6 +17,38 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
+}
+
+/**
+ * Título y descripción por idioma. Antes vivían fijos y en español en el layout
+ * raíz, así que /en se anunciaba en castellano y las dos rutas competían por el
+ * mismo texto en los resultados de búsqueda.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const safe: Locale = isLocale(locale) ? locale : DEFAULT_LOCALE;
+  const { meta } = (await import(`../../locales/${safe}/common.json`)).default;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: `/${safe}`,
+      languages: Object.fromEntries(LOCALES.map((l) => [l, `/${l}`])),
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `/${safe}`,
+      siteName: 'SyntropySoft',
+      locale: safe,
+      type: 'website',
+    },
+  };
 }
 
 export default async function LocaleLayout({

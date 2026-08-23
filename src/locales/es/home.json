@@ -1,217 +1,96 @@
 {
   "hero": {
-    "title_part1": "SyntropySoft: Forjando el Futuro del ",
-    "title_highlight": "DevSecOps",
-    "subtitle_part1": "Creamos ",
-    "subtitle_highlight": "herramientas inteligentes, seguras y eficientes",
-    "subtitle_part2": " para los equipos de desarrollo más exigentes del mundo.",
-    "description": "Del Caos a la Claridad",
-    "tagline": "Observabilidad • Frontend • Seguridad",
-    "cta_explore": "Explorar Soluciones",
-    "cta_contact": "Contactar"
+    "title_lead": "El mismo contrato de observabilidad en ",
+    "title_highlight": "Node.js, Python y .NET",
+    "subtitle": "No son tres librerías parecidas. Es una especificación, implementada de forma idiomática en cada lenguaje — y demostrada por el mismo fixture de tests corriendo en todas.",
+    "cta_primary": "Empezá en tu lenguaje",
+    "cta_secondary": "Cómo lo pensamos"
   },
-  "features": {
-    "title": "Características Principales",
-    "subtitle": "Todo lo que necesitas para observabilidad moderna",
+  "problem": {
+    "title": "Tu stack habla tres lenguajes. Tus logs hablan tres dialectos.",
+    "lead": "Un request cruza tu gateway en Node, tu worker en Python y tu servicio en .NET.",
+    "body": [
+      "Tres loggers. Tres formas de enmascarar una tarjeta. Tres nombres para el mismo correlation id. Tres respuestas a “qué pasa cuando el destino de logs se cae”.",
+      "Correlacionar ese request es reconciliar tres verdades distintas — a mano, a las 3 de la mañana, con alguien esperando."
+    ]
+  },
+  "matrix": {
+    "title": "SyntropyLog",
+    "subtitle": "Masking declarativo de PII, contexto que sobrevive al async y un camino de logging que nunca tira — en los lenguajes que tu stack ya usa.",
+    "col_language": "Lenguaje",
+    "col_package": "Paquete",
+    "col_version": "Versión",
+    "col_notes": "Notas",
+    "notes_node": "Motor nativo en Rust",
+    "notes_python": "CPython 3.7+ · motor Rust opcional",
+    "notes_dotnet": "net8.0 · Native AOT",
+    "notes_java": "En desarrollo",
+    "version_java": "—"
+  },
+  "principles": {
+    "title": "Cómo pensamos la observabilidad",
+    "subtitle": "Cuatro decisiones que ya están en el código. Son la razón de que las implementaciones coincidan — y de que, donde no, no coincidan a propósito.",
     "items": [
       {
-        "title": "Minimal Setup",
-        "description": "Configuración, eventos (ready/error), espera de inicialización y middleware de contexto; luego usa getLogger() y contexto en cualquier parte."
+        "title": "El camino del logging nunca tira",
+        "body": "Si tu logger puede voltear tu handler, no es una herramienta de observabilidad: es un modo de falla nuevo. El fallo sale por hook y por contador. Nunca a quien llama."
       },
       {
-        "title": "Correlación Automática",
-        "description": "Trazabilidad distribuida entre servicios, llamadas HTTP y brokers de mensajes"
+        "title": "Una estrategia de masking es dato, no código",
+        "body": "Agregar una estrategia no debería ser escribir la misma función en cuatro lenguajes. Es un spec que el motor interpreta — y por eso la salida puede ser idéntica en todos lados."
       },
       {
-        "title": "Framework Agnóstico",
-        "description": "Funciona con Express, Fastify, Koa, NestJS y cualquier app Node.js"
+        "title": "Los nombres de wire son de tus servicios, no nuestros",
+        "body": "Tu gateway le dice x-request-id y el sistema viejo le dice X-Correlation. Cada servicio declara su mapa y el id sobrevive la traducción. Los headers no tienen que ponerse de acuerdo."
       },
       {
-        "title": "Seguridad Primero",
-        "description": "Enmascaramiento de datos integrado y logging listo para compliance"
-      },
-      {
-        "title": "Alto Rendimiento",
-        "description": "45,000+ ops/seg con latencia menor a 1ms"
-      },
-      {
-        "title": "Revolución en Testing",
-        "description": "Testing sin boilerplate con SyntropyLogMock"
-      },
-      {
-        "title": "Seguridad Enterprise",
-        "description": "GitHub Dependabot, análisis CodeQL y escaneo automático de vulnerabilidades"
+        "title": "La paridad se prueba con un test, no con un documento",
+        "body": "Los mismos diecisiete casos de masking — literalmente el mismo archivo, byte por byte — corren en las suites de Node, Python y Java. Si una implementación deriva, su build se pone en rojo."
       }
     ]
   },
-  "ecosystem": {
-    "title": "Ecosistema Completo",
-    "subtitle": "Cuatro herramientas poderosas, una plataforma unificada",
-    "description": "SyntropySoft proporciona una solución completa para aplicaciones Node.js modernas, desde observabilidad hasta frontend y seguridad.",
-    "tools": [
-      {
-        "name": "SyntroJS",
-        "title": "Framework Backend",
-        "description": "FastAPI para Node.js. Crea APIs de alto rendimiento que funcionan en Node.js y Bun sin cambiar nada de código. Validación automática y documentación generada.",
-        "features": ["Funciona en Node.js y Bun", "Validación Automática", "Alto Rendimiento", "Zero Config"],
-        "npm": "npm install syntrojs",
-        "help": "https://github.com/Syntropysoft/syntrojs",
-        "ctaUrl": "https://www.npmjs.com/package/syntrojs?activeTab=readme",
-        "color": "emerald",
-        "cta": "Probar SyntroJS"
-      },
-      {
-        "name": "SyntropyLog",
-        "title": "Framework de Observabilidad",
-        "description": "Del caos a la claridad. Trazabilidad distribuida, correlación automática y minimal setup para equipos de alto rendimiento.",
-        "features": ["Minimal Setup", "Correlación Automática", "Alto Rendimiento", "Revolución en Testing"],
-        "npm": "npm install syntropylog",
-        "help": "https://syntropysoft.github.io/syntropylog-doc/",
-        "color": "blue",
-        "cta": "Prueba SyntropyLog Gratis"
-      },
-      {
-        "name": "SyntropyFront",
-        "title": "Framework Frontend",
-        "description": "Desarrollo frontend moderno con integración perfecta al ecosistema SyntropySoft.",
-        "features": ["React Moderno", "TypeScript First", "Integración Ecosistema", "Optimizado Rendimiento"],
-        "npm": "npm install @syntropysoft/syntropyfront",
-        "help": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
-        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/syntropyfront",
-        "color": "green",
-        "cta": "Ver en NPM"
-      },
-      {
-        "name": "Praetorian",
-        "title": "Seguridad y Gobernanza",
-        "description": "Seguridad y gobernanza de nivel empresarial para tus aplicaciones Node.js.",
-        "features": ["Seguridad Primero", "Listo para Compliance", "Escaneo Automatizado", "Grado Empresarial"],
-        "npm": "npm install @syntropysoft/praetorian",
-        "help": "https://www.npmjs.com/package/@syntropysoft/praetorian",
-        "ctaUrl": "https://www.npmjs.com/package/@syntropysoft/praetorian",
-        "color": "purple",
-        "cta": "Ver en NPM",
-        "status": "En desarrollo"
-      }
-    ]
-  },
-  "sintrojs": {
-    "title": "SyntroJS ⚡ – FastAPI para Node.js y Bun",
-    "subtitle": "El primer framework dual-runtime del mundo. Escribe una vez, ejecuta en Node.js y Bun con máximo rendimiento. Sin cambios de código.",
-    "description": "SyntroJS es el único framework que funciona en Node.js Y Bun sin cambiar absolutamente nada de código. Obtén validación automática, documentación generada, y rendimiento excepcional en ambos runtimes.",
-    "features_title": "Características Principales:",
-    "dual_runtime": {
-      "title": "Dual Runtime",
-      "description": "El mismo código funciona en Node.js y Bun. Zero cambios de código, máximo rendimiento."
-    },
-    "fastapi_dx": {
-      "title": "FastAPI-like DX",
-      "description": "Validación automática, type safety, y docs interactivas. La mejor experiencia de desarrollo para Node.js."
-    },
-    "testing": {
-      "title": "Testing Es Simple",
-      "description": "TinyTest hace que escribir tests sea tan fácil como crear endpoints. Mutation testing en segundos."
-    },
-    "performance": {
-      "title": "Alto Rendimiento",
-      "description": "3.8x más rápido que Fastify con Bun. 89.3% del rendimiento de Fastify con Node.js."
-    },
-    "interactive_docs": {
-      "title": "Documentación Interactiva",
-      "description": "Swagger UI y ReDoc generados automáticamente. La documentación que se escribe sola."
-    },
-    "getting_started_title": "Fácil de Empezar",
-    "step1": "1. Instala el paquete:",
-    "step2": "2. Crea tu API:",
-    "view_npm": "Ver en NPM",
-    "view_github": "Ver Código en GitHub"
-  },
-  "syntropylog": {
-    "title": "SyntropyLog 🔍 – Del Caos a la Claridad",
-    "subtitle": "El framework de observabilidad para equipos de alto rendimiento. Construye aplicaciones Node.js resilientes, seguras y eficientes con confianza.",
-    "observability_tooltip": "Capacidad de un sistema para ser entendido desde el exterior a través de sus salidas: logs, métricas y trazas.",
-    "feature_title": "Observabilidad Integral",
-    "feature_desc": "SyntropyLog no es solo un logger. Es un completo sistema de observabilidad que te da el poder de entender tu aplicación a fondo, con características listas para producción.",
-    "main_features_title": "Características Principales:",
-    "features": [
-      {
-        "title": "Zero Performance Overhead",
-        "description": "Logs en 2ms (igual que Pino, el más rápido del mercado) con 0 impacto en rendimiento."
-      },
-      {
-        "title": "Bundle Size Mínimo",
-        "description": "Solo 203 bytes más que Pino (1.03x) - tree-shaking inteligente que solo carga lo que usas."
-      },
-      {
-        "title": "Minimal Setup",
-        "description": "Configuración, eventos (ready/error), espera de inicialización y middleware de contexto; con eso listo, repartes observabilidad por toda la app."
-      },
-      {
-        "title": "Distributed Tracing Automático",
-        "description": "Correlation IDs que viajan entre servicios, HTTP calls y message brokers sin configuración."
-      },
-      {
-        "title": "Singleton Pattern Inteligente",
-        "description": "Previene crashes de pods en Kubernetes con gestión eficiente de recursos."
-      },
-      {
-        "title": "Testing Revolution",
-        "description": "SyntropyLogMock elimina la necesidad de conexiones reales en tests - 88.93% test coverage."
-      },
-      {
-        "title": "Enterprise Security",
-        "description": "GitHub Dependabot, CodeQL, escaneo automático de vulnerabilidades - 100% open source."
-      }
-    ],
-    "getting_started_title": "Fácil de Empezar",
-    "step1_label": "1. Instala el paquete:",
-    "step2_label": "2. Configura e inicializa:",
-    "docs_cta": "Ver Documentación Completa"
+  "getStarted": {
+    "title": "Empezá en tu lenguaje",
+    "subtitle": "Instalalo y los defaults ya enmascaran contraseñas, tokens, emails y números de tarjeta.",
+    "footnote": "Todas las implementaciones son Apache 2.0 y no tienen dependencias de runtime obligatorias."
   },
   "about": {
-    "title": "Construido por Desarrolladores, para Desarrolladores",
-    "subtitle": "En SyntropySoft, nuestra pasión es resolver problemas reales. Somos un equipo dedicado a la creación de software de alta calidad con un fuerte compromiso con el código abierto y la comunidad.",
-    "opensource_title": "Compromiso Open Source"
+    "title": "Hecho por desarrolladores, para desarrolladores",
+    "subtitle": "Nuestra pasión es resolver problemas reales. Construimos software de calidad con un compromiso fuerte con el open source y con la comunidad.",
+    "opensource_title": "Compromiso open source",
+    "opensource_items": [
+      [
+        "Licencia permisiva",
+        "Todo lo que publicamos está licenciado bajo Apache 2.0."
+      ],
+      [
+        "Contribuciones bienvenidas",
+        "Creemos en el poder de la colaboración."
+      ],
+      [
+        "Apoyanos en GitHub",
+        "Una estrella en nuestros repositorios nos ayuda a crecer."
+      ]
+    ]
   },
-  "contact": {
-    "title": "Hablemos",
-    "subtitle": "¿Tienes una idea, necesitas una solución a medida o simplemente quieres saber más? Envíanos un mensaje.",
-    "form_name": "Nombre",
-    "form_email": "Email",
-    "form_message": "Mensaje",
-    "form_submit": "Enviar Mensaje"
-  },
-  "quickStart": {
-    "title": "Comienza en 30 segundos",
-    "subtitle": "Instala y comienza a loggear sin configuración",
-    "code": "npm install syntropylog@0.7.0"
-  },
-  "stats": {
-    "title": "Confiado por desarrolladores",
-    "examples": "32 ejemplos de producción",
-    "coverage": "88.93% cobertura de tests",
-    "version": "v0.7.0 estable"
-  },
-  "common": {
-    "view_documentation": "📖 Ver documentación"
-  },
-  "sponsors": {
-    "title": "Nuestros Patrocinadores",
-    "subtitle": "Gracias a quienes hacen posible este proyecto",
-    "description": "SyntropyLog es posible gracias al apoyo de nuestra comunidad y patrocinadores.",
-    "empty_title": "Sé el primer patrocinador",
-    "empty_description": "Ayuda a mantener SyntropyLog como proyecto open source y obtén beneficios exclusivos.",
-    "become_sponsor": "Convertirse en Patrocinador",
-    "contact_us": "Contactar",
-    "support_options_title": "Otras formas de apoyar",
-    "star_github": "Dar Star en GitHub",
-    "star_description": "Ayuda a que más desarrolladores descubran SyntropyLog.",
-    "star_button": "Ir a GitHub",
-    "report_issues": "Reportar Issues",
-    "issues_description": "Ayuda a mejorar el proyecto reportando bugs o sugerencias.",
-    "issues_button": "Ver Issues",
-    "share": "Compartir",
-    "share_description": "Comparte SyntropyLog con tu equipo y comunidad.",
-    "share_button": "Compartir en X"
+  "support": {
+    "title": "Otras formas de apoyar",
+    "items": [
+      {
+        "title": "Dar Star en GitHub",
+        "body": "Ayuda a que más desarrolladores descubran SyntropyLog.",
+        "cta": "Ir a GitHub"
+      },
+      {
+        "title": "Reportar Issues",
+        "body": "Ayuda a mejorar el proyecto reportando bugs o sugerencias.",
+        "cta": "Ver Issues"
+      },
+      {
+        "title": "Compartir",
+        "body": "Comparte SyntropyLog con tu equipo y comunidad.",
+        "cta": "Compartir en X"
+      }
+    ]
   }
-} 
+}

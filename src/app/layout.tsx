@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SyntropySoft - Forjando el Futuro del DevSecOps",
-  description: "Creamos herramientas inteligentes, seguras y eficientes para los equipos de desarrollo más exigentes del mundo.",
+  // Fallback: cada /[locale] lo pisa con su propio título en su idioma
+  // (ver generateMetadata en app/[locale]/layout.tsx).
+  title: "SyntropySoft",
+  description: "Observability tooling for polyglot systems.",
+  metadataBase: new URL("https://syntropysoft.com"),
   icons: {
     icon: '/beaconLog-2.png',
     shortcut: '/beaconLog-2.png',

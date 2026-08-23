@@ -75,8 +75,8 @@ shell que corre el build.
 - ❌ NEVER agregar copy en un solo idioma. ✅ ALWAYS la clave existe en `en` **y** en `es`: son
   gemelos, como los `docs/`/`doc-es/` de la familia. Una clave faltante no rompe nada — el
   `getTranslation` devuelve **la clave cruda** como texto, y eso sale publicado.
-- ❌ NEVER copy nuevo dentro de un componente `'use client'` que dependa de `useTranslations`: hoy
-  eso significa que **el crawler no lo ve** (ver gotchas).
+- ❌ NEVER resolver texto en el cliente. ✅ ALWAYS leerlo en el servidor con `getHomeMessages` /
+  `getCommonMessages` y pasarlo por props (ver gotchas).
 - ❌ NEVER prometer en el sitio una capacidad que el producto no tiene. El sitio le habla a los
   mismos repos de la familia; una afirmación de más acá es una promesa incumplida allá.
 - ❌ NEVER dejar una página de debug accesible en producción.
@@ -90,20 +90,28 @@ shell que corre el build.
 > al final, bajo "Trampas ya desactivadas" — se conservan porque explican por qué el código quedó
 > como quedó, y volver atrás las reactiva.
 
-**El copy traducido NO está en el HTML que sirve el servidor.** `useTranslations` es un hook
-`'use client'` que hace `import()` de los JSON de `src/locales/` dentro de un `useEffect`. Verificado
-contra producción: `From Chaos to Clarity`, `Explore Solutions` y `Core Features` dan **0
-ocurrencias** en el HTML servido de `/en`; `Observability` también da 0. Lo único que viaja es lo
-hardcodeado. Para una landing es el problema más caro que tiene el sitio: el contenido que vende
-existe solo después de hidratar. Ficha abierta en `docs/TODO.md`.
+**No hay i18n de cliente: el texto se resuelve en el servidor.** `getHomeMessages` /
+`getCommonMessages` (`src/services/messages.ts`) leen los JSON de `src/locales/` en un Server
+Component y las secciones reciben el texto **por props**. ❌ NEVER reintroducir un hook que resuelva
+traducciones en el cliente: eso fue exactamente lo que dejó el copy fuera del HTML servido hasta el
+2026-08-23. Si un componente cliente necesita texto, lo recibe por props desde el servidor.
+
+**El borde cliente es chico a propósito**: `LanguageSwitcher`, `MobileMenu`, `Logo`,
+`LoadingProvider`/`LoadingSpinner`. Todo lo demás es servidor. Antes de poner `'use client'` en algo
+que solo renderiza, revisar qué se lleva fuera del HTML.
 
 **`<html lang>` siempre dice `en`.** Está fijo en `src/app/layout.tsx`; el layout de `[locale]` pone
 el `lang` en un `<div>` interno. En `/es` el documento se declara en inglés — lo lee el lector de
 pantalla y lo lee el crawler.
 
-**La metadata es única, fija y en español.** Vive solo en `src/app/layout.tsx`. No varía por locale,
-no hay `alternates`/`hreflang`, no hay Open Graph ni Twitter card, y no existen `sitemap.ts` ni
-`robots.ts`.
+**La metadata se genera por locale** en `generateMetadata` de `src/app/[locale]/layout.tsx`:
+`title`, `description`, `canonical`, `alternates.languages` y Open Graph. El layout raíz solo tiene
+el fallback y `metadataBase`. Falta Twitter card, y no existen `sitemap.ts` ni `robots.ts`.
+
+**Los datos de los paquetes no se traducen.** Versiones, nombres y URLs viven en
+`src/config/packages.ts`, una sola vez; los locales tienen los rótulos de columna y las notas.
+❌ NEVER poner un número de versión en un archivo de idioma: se duplica y una de las dos copias
+queda vieja.
 
 **Una clave de traducción faltante no rompe nada: se publica.** `getTranslation` devuelve **la clave
 cruda** como texto visible. Por eso los locales `en` y `es` son gemelos y se tocan en el mismo
