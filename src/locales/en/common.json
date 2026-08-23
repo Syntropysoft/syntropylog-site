@@ -1,15 +1,13 @@
 {
   "navigation": {
-    "home": "Home",
-    "features": "Features",
+    "syntropylog": "SyntropyLog",
+    "principles": "How we think",
+    "start": "Get started",
     "docs": "Documentation",
     "examples": "Examples",
-    "blog": "Blog",
-    "community": "Community",
+    "tools": "Tools",
     "github": "GitHub",
-    "npm": "NPM",
-    "patreon": "Patreon",
-    "tools": "Tools"
+    "npm": "NPM"
   },
   "buttons": {
     "getStarted": "Get Started",
@@ -23,5 +21,9 @@
   "footer": {
     "copyright": "© 2024 SyntropyLog — Open source Apache 2.0. Built by SyntropySoft.",
     "madeWith": "Made with ❤️ for the Node.js community"
+  },
+  "meta": {
+    "title": "SyntropySoft — the same observability contract in Node.js, Python and .NET",
+    "description": "One specification for logging and correlation, implemented idiomatically in Node.js, Python and .NET — with declarative PII masking and a logging path that never throws."
   }
-} 
+}

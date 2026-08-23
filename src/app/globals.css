@@ -143,3 +143,14 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.1), 0 10px 10px -5px rgba(14, 165, 233, 0.04);
 }
+
+/* Foco radial del hero. Vivía en un <style jsx global> dentro de Hero.tsx, que
+   obligaba a que Hero fuera Client Component — y con eso su titular no llegaba
+   al HTML servido. */
+.hero-spotlight-gradient {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(12, 74, 110, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+}

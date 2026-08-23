@@ -13,20 +13,6 @@ Fuente de verdad del estado del sitio. Lo que no está acá, no está pendiente.
 
 ## Bugs abiertos
 
-### [ ] El copy traducido no llega al HTML que sirve el servidor
-**El más caro que tiene el sitio.** `useTranslations` es un hook `'use client'` que hace `import()`
-de los JSON dentro de un `useEffect`, así que el contenido existe recién después de hidratar.
-
-*Repro (2026-08-23, contra producción):* `curl -sL https://syntropysoft.com/en` y buscar
-`From Chaos to Clarity`, `Explore Solutions`, `Core Features` u `Observability` → **0 ocurrencias
-cada uno**. Lo único que viaja es lo hardcodeado.
-
-*Costo:* una landing que vende producto y cuyo argumento de venta no está en el HTML. Un crawler que
-no ejecuta JS no ve nada; el que sí, lo ve en una segunda pasada.
-
-*Camino:* mover la resolución de traducciones a Server Components (leer el JSON en el servidor y
-pasar el texto ya resuelto), dejando `'use client'` solo donde hace falta interacción.
-
 ### [ ] `<html lang>` siempre dice `en`, también en `/es`
 Está fijo en `src/app/layout.tsx`; el layout de `[locale]` pone el `lang` en un `<div>` interno, que
 no lo reemplaza. Lo leen el lector de pantalla y el crawler.
@@ -44,9 +30,7 @@ algo desmontado.
 ## Gaps
 
 ### SEO / indexabilidad
-- [ ] **Metadata por locale.** Hoy hay una sola, fija y en español, en `src/app/layout.tsx`. Falta
-      `title`/`description` por idioma, `canonical` y `alternates`/`hreflang` entre `en` y `es`.
-- [ ] **Open Graph y Twitter card.** No existen: el sitio compartido en redes no tiene preview.
+- [ ] **Twitter card.** Falta; Open Graph ya está.
 - [ ] **`robots.ts` y `sitemap.ts`.** No existen. Desde el arreglo del catch-all esas URLs dan 404
       correcto, que es mejor que devolver la home — pero siguen faltando.
 
@@ -72,7 +56,18 @@ algo desmontado.
 - [ ] **Confirmar en el log de build de Vercel que usa pnpm.** Con `packageManager` pinneado debería,
       pero conviene verlo una vez.
 
+### Contenido nuevo (Partes 2 y 3)
+- [ ] **Maquetas conceptuales** de login/dashboard (syntroAuth) y del depósito de logs + libro de
+      actas. No funcionales, y **rotuladas como maquetas de forma visible**: un senior que clickea un
+      login y descubre que es un dibujo sin aviso concluye que vendemos humo.
+- [ ] **Demo hosteada del ejemplo 22.** 9 servicios + Kafka + Redis + collector .NET AOT. No va en
+      Vercel; Railway es el camino probado. Riesgos sin resolver: costo con Kafka permanente, reset
+      de estado entre visitantes, y abuso del botón "Place order".
+
 ### Contenido
+- [ ] **El sitio no tiene ningún canal de contacto.** El footer mostraba el mail personal del
+      maintainer como literal en el JSX; se quitó al pasar el footer a servidor, y quedó solo
+      LinkedIn. Decidir con qué se reemplaza — es la única forma que tenía un visitante de escribir.
 - [ ] **El formulario de contacto se borró** (estaba en dos implementaciones, ninguna funcional).
       Si se quiere contacto, se hace de cero: un endpoint real, sin credenciales en el cliente y sin
       el mail personal en la UI. Las claves `contact.*` de los locales se conservaron — el copy está
@@ -83,6 +78,22 @@ algo desmontado.
 
 ## Hecho
 
+- [x] **Parte 1: el sitio dice una sola cosa** — 2026-08-23. Posicionamiento de observabilidad
+      multi-lenguaje con lo único publicado y verificable. Salen el ecosistema de cuatro productos,
+      los deep dives de SyntroJS y la sección de patrocinadores (que renderizaba un estado vacío
+      anunciando que no había ninguno). Entran hero, problema, matriz de lenguajes, las cuatro
+      decisiones de diseño y "empezá en tu lenguaje".
+- [x] **El copy llega al HTML servido** — 2026-08-23. Cerraba el bug más caro del sitio. Las
+      secciones son Server Components y reciben el texto resuelto por props; se eliminó el i18n de
+      cliente (`useTranslations` + `translationService`). Verificado con `curl` sin ejecutar JS, en
+      los dos idiomas.
+- [x] **La navegación dejaba las claves crudas en el HTML** — 2026-08-23. Header y Footer eran
+      cliente, así que un crawler leía `navigation.github` en vez de "GitHub". Diez claves crudas,
+      ahora cero.
+- [x] **El menú móvil no existía** — 2026-08-23. `Navigation` solo renderizaba el botón si le
+      pasaban `onMobileMenuToggle`, y nadie se lo pasaba: en un teléfono no había navegación.
+- [x] **Metadata por idioma** — 2026-08-23. `title`, `description`, `canonical`, `hreflang` y Open
+      Graph por locale. Antes había una sola, fija y en español.
 - [x] **Chasis `/sf-*` y ficha del repo** — 2026-08-23.
 - [x] **Un solo gestor de paquetes (pnpm), con `packageManager` pinneado** — 2026-08-23. Había dos
       lockfiles que no empataban y `pnpm install --frozen-lockfile` fallaba.
