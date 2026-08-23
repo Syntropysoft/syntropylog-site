@@ -1,16 +1,11 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import next from 'eslint-config-next/core-web-vitals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// eslint-config-next 16 ya exporta flat config (incluye next/typescript).
+// ❌ NEVER volver a envolverlo en FlatCompat: revienta con
+// "TypeError: Converting circular structure to JSON".
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...next,
+  { ignores: ['.next/**', 'next-env.d.ts'] },
 ];
 
 export default eslintConfig;

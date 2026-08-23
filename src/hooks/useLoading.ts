@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 
 export function useLoading(minLoadTime: number = 2000) {
   const [isLoading, setIsLoading] = useState(true);
-  const [startTime] = useState(Date.now());
+  // Initializer lazy: Date.now() es impura y no debe correr en cada render.
+  const [startTime] = useState(() => Date.now());
 
   useEffect(() => {
     const handleLoad = () => {
