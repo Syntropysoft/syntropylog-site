@@ -54,6 +54,11 @@ export default function LanguageMatrix({ messages }: { messages: MatrixMessages 
             </tbody>
           </table>
         </div>
+
+        {/* La doc de cada implementación es su README, y la página del registry lo
+            renderiza entero. Por eso el sitio no tiene un link "Documentación": la
+            tabla de arriba ya es el índice. */}
+        <p className="mt-4 text-sm text-slate-500">{messages.docs_note}</p>
       </div>
     </section>
   );

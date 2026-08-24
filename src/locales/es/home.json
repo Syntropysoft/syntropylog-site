@@ -25,7 +25,8 @@
     "notes_python": "CPython 3.7+ · motor Rust opcional",
     "notes_dotnet": "net8.0 · Native AOT",
     "notes_java": "En desarrollo",
-    "version_java": "—"
+    "version_java": "—",
+    "docs_note": "La página de cada paquete tiene la documentación completa de esa implementación."
   },
   "principles": {
     "title": "Cómo pensamos la observabilidad",

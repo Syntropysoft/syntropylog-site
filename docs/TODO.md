@@ -66,9 +66,11 @@ algo desmontado.
       Opciones: apagar GitHub Pages (404 limpio) · reemplazarla por una sola página que diga que está
       obsoleta y apunte a los README y a `llms.txt` (captura el tráfico de búsqueda y lo redirige) ·
       archivar el repo. La segunda es la mejor para reputación.
-- [ ] **Decidir dónde vive la documentación.** Hoy, de hecho, son los README de cada implementación
-      —el de slpy tiene 37 mil caracteres— más `llms.txt`. Si esa es la respuesta, conviene decirlo
-      en el sitio en vez de dejar el hueco.
+- [x] **Dónde vive la documentación: en los README** — 2026-08-23. Verificado que los tres registries
+      los publican enteros: PyPI 37.201 caracteres, NuGet 31.216, npm 18.744. La matriz de lenguajes
+      ya linkea a esas páginas, así que **es** el índice de documentación; se agregó una línea bajo la
+      tabla diciéndolo. Si algún día vuelve un sitio de docs propio, esa línea es lo que se
+      reemplaza.
 
 ### Contenido nuevo (Partes 2 y 3)
 - [ ] **Maquetas conceptuales** de login/dashboard (syntroAuth) y del depósito de logs + libro de

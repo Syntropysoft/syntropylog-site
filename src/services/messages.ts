@@ -35,6 +35,7 @@ export interface MatrixMessages {
   notes_dotnet: string;
   notes_java: string;
   version_java: string;
+  docs_note: string;
 }
 
 export interface PrinciplesMessages {
